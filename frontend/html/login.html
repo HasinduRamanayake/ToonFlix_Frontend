@@ -1,0 +1,65 @@
+<html>
+    <head>
+    
+        <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/login.css">
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.0/backbone-min.js"></script>
+        <script src="../js/backbone_app/models/login_model.js"></script>
+        <script src="../js/backbone_app/views/login_view.js"></script> -->
+
+        <script>      
+            $(document).ready(function() {
+                new AuthView({el: 'section'});   
+
+                // Toggle between login and signup view
+                $('#toggle-form').click(function(e) {
+                    e.preventDefault();
+                    if ($('#login-form').is(':visible')) {
+                        $('#login-form').hide();
+                        $('#signup-form').show();
+                        $(this).text('Already have an account? Log In');
+                    } else {
+                        $('#signup-form').hide();
+                        $('#login-form').show();
+                        $(this).text('Don\'t have an account? Sign Up');
+                    }
+                });
+            });
+        </script>
+
+    </head>
+
+    <body>
+        <section>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Login</button>
+           
+        </form>
+
+        <form id="signup-form" style="display:none;">
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" required>
+
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <button type="submit">Sign Up</button>
+            
+        </form>
+            <a href="#" id="toggle-form">Don't have an account? Sign Up</a>
+        </section>
+        
+
+    </body>
+</html>

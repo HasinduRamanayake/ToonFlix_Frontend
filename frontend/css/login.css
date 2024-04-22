@@ -1,0 +1,79 @@
+/* Base styles for body, ensuring full height and centering content */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../../assets/Login/cbg2.jpg'); /* Replace with your actual background image URL */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333; /* Text color */
+}
+
+/* Common form styles */
+form {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin-bottom: 20px; /* Spacing between form and toggle link */
+}
+
+/* Label styling */
+form label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Input field styling */
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+form button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+/* Toggle link styling */
+a#toggle-form {
+    display: block;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+}
+
+a#toggle-form:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+}
