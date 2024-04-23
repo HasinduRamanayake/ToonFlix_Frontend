@@ -1,30 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Upload Image</title>
+<script type="text/template" id="post-detail-template">
+    <div class="card-container">
+        <div class="card-header">
+            <h2><%= title %></h2>
+        </div>
+        <div class="card-image">
+            <img src="<%= image_path %>" alt="<%= title %>" />
+        </div>
+        <div class="card-content">
+            <p class="card-genre">Genre: <%= genre %></p>
+            <p class="card-description">Description: <%= description %></p>
+            <div class="card-tags">
+                <% _.each(tag.split(','), function(singleTag) { %>
+                    <span class="tag"><%= singleTag.trim() %></span>
+                <% }); %>
+            </div>
+        </div>
+    </div>
+</script>
 
-    <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/post.css">
+<script type="text/template" id="comment-detail-template">
+    <div class="comments-section">
+        <h3>Comments</h3>
+        <ul class="comments-list">
+            <!-- Comment Item -->
+            <li class="comment-item">
+                <div class="comment-content">
+                    <h4 class="comment-author">Alice Smith</h4>
+                    <p class="comment-text">This is a comment text.</p>
+                </div>
+            </li>
+        </ul>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.0/backbone-min.js"></script>
-    <script src="../js/backbone_app/models/post_model.js"></script>
-    <script src="../js/backbone_app/views/post_view.js"></script> -->
-
-    <!-- <script>
-         $(document).ready(function() {
-                new PostFormView();
-         });
-    </script> -->
-</head>
-<body>
-    <form id="postForm" enctype="multipart/form-data">
-        <input type="text" id="title" name="title" placeholder="Post Title" required>
-        <input type="file" id="image" name="image" required>
-        <button type="submit">Create Post</button>
-    </form>
-</body>
-
-
-</html>
+        <form class="comment-form">
+            <h4>Add a comment</h4>
+            <textarea class="comment-input" placeholder="Type your comment here..."></textarea>
+            <button type="submit" class="btn comment-submit">Post Comment</button>
+        </form>
+    </div>
+</script>

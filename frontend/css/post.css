@@ -1,12 +1,7 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-/* Reset margin and padding for all elements */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 /* Set up the document font and background */
 body, input, textarea, button {
@@ -16,7 +11,7 @@ body, input, textarea, button {
 }
 
 body {
-    background-color: #f4f7f6;
+   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,9 +41,35 @@ textarea {
 
 /* Style the file input button */
 input[type="file"] {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
+  display: none; /* Hide the default file input */
+}
+
+label[for="image"] {
+  display: block;
+  background-color: #5372F0; /* Adjust colors as needed */
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+label[for="image"]:hover {
+  background-color: #4561d6;
+}
+
+label[for="image"] {
+    display: block;
+    background-color: #5372F0; /* Adjust color as needed */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+label[for="image"]:hover {
+background-color: #4561d6; /* Adjust hover color */
 }
 
 input[type="file"] + label {

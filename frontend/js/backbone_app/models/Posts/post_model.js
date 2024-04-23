@@ -1,9 +1,19 @@
 
 var PostModel = Backbone.Model.extend({
-    urlRoot: 'http://localhost/toonflix/api/posts/create_post', 
+    url: function() {
+        var base = 'http://localhost/toonflix/api/posts/';
+        if (this.isNew()) {
+            return base + 'create_post'; // For creating new posts
+        }
+        return base + this.id; // For fetching a specific post
+    },
     defaults: {
         title: '',
-        image: null 
+        genre: '',
+        description: '',
+        tag: '',
+        image_path: '',
+        username: ''
     }
+  
 });
-

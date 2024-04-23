@@ -45,4 +45,25 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </section>
+    
+
+</script>
+
+<script type="text/template" id="post-template">
+    <div class="posts-container">
+        <% _.each(posts, function(post) { %>
+            <div class="box">
+                <div class="box-image">
+                    <% if (post.imagePath) { %>
+                        <!-- Wrap the image in an anchor tag with a URL hash fragment -->
+                        <a href="#posts/<%= post.id %>">
+                            <img src="<%= post.imagePath %>" alt="Post image">
+                        </a>
+                    <% } %>
+                </div>
+                <h3><%= post.title %></h3>
+                <span>Genre: <%= post.genre %></span>
+            </div>
+        <% }); %>
+    </div>
 </script>

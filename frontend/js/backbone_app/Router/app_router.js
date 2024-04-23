@@ -3,13 +3,15 @@ var AppRouter = Backbone.Router.extend({
         "": "login",
         "dashboard": "dashboard",
         "create_post": "createPost",
-        "home": "home"
+        "home": "home",
+        "posts/:id": "showDetailedPost",
+        "*path": "notFoundPage"
     },
 
    
     login: function() {
         console.log("Login route is called.");
-        new AuthView({el:'#app'}); // Call render on the view to update the UI
+        new AuthView({el:'#app'}); 
        
     },
     dashboard: function() {
@@ -17,17 +19,24 @@ var AppRouter = Backbone.Router.extend({
     },
 
     createPost: function(){
-       
-        // if (!this.postFormView) {
-        //     this.postFormView = new PostFormView({ model: new Post() });
-        // }
         new PostFormView({el:'#app'});       
     },
 
     home: function(){
-        new PostsCollectionView({el:'#app'});
+        // new PostsCollectionView({el:'#app'});
     },
     
+    notFoundPage: function(){
+        new NotFoundView({el:'#app'});
+    },
+
+    showDetailedPost: function(id) {
+        new PostDetailView({id: id, el:'#app'});
+    }
+
+    
+    
+
 
     
     
