@@ -21,29 +21,33 @@
 
 <script type="text/template" id="comment-detail-template">
     <div class="comments-section">
-       
-            <h3>Comments</h3>
-            <ul class="comments-list">
-                <% _.each(comments, function(comment) { %>
-                    <li class="comment-item">
-                        <div class="comment-content">
-                            <h4 class="comment-author">
-                                <%= _.escape(comment.user.username) %>
-                            </h4>
-                            <p class="comment-meta">
-                                Posted on <%= (new Date(comment.created_at.date)).toLocaleString() %>
-                                on "<%= _.escape(comment.post.title) %>"
-                            </p>
-                            <p class="comment-text">
-                                <%= _.escape(comment.content) %>
-                            </p>
+        <h3>Comments</h3>
+        <ul class="comments-list">
+            <% _.each(comments, function(comment) { %>
+                <li class="comment-item">
+                    <div class="comment-content">
+                        <h4 class="comment-author">
+                            <%= _.escape(comment.user.username) %>
+                        </h4>
+                        <div class="editable-content" data-id="<%= comment.id %>">
+                            <p class="comment-text" style="display: inline-block;"><%= _.escape(comment.content) %></p>
+                            <textarea class="edit-comment-text" style="display: none;" data-id="<%= comment.id %>"><%= _.escape(comment.content) %></textarea>
                         </div>
-                    </li>
-                <% }); %>
-            </ul>
-        
+                        <% if (comment.user.id == currentUser) { %>
+                            <button class="edit-comment" data-id="<%= comment.id %>">Edit</button>
+                            <button class="delete-comment" data-id="<%= comment.id %>">Delete</button>
+                            <button class="save-comment" data-id="<%= comment.id %>" style="display: inline-block;">Save</button>
+                            <button class="cancel-comment" data-id="<%= comment.id %>" style="display: inline-block;">Cancel</button>
+
+                        <% } %>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
     </div>
 </script>
+
+
 
 
 

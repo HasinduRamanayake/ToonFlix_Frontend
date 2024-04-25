@@ -31,7 +31,7 @@ var AppRouter = Backbone.Router.extend({
     },
 
     showDetailedPost: function(id) {
-        new PostDetailView({id: id, el:'#app'});
+        new PostDetailView({id: id, el:'#app', currentUser:'100'});
     }
 
     

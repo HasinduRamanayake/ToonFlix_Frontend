@@ -5,9 +5,9 @@
 }
 
 .card-container {
-    max-width: 800px; /* Adjust the width to your preference */
+    max-width: 100%; /* Adjust the width to your preference */
     margin: 100px auto 20px; /* 100px top margin to create space from the navbar */
-    background-color: #fff;
+    background-color: #314372;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -65,7 +65,7 @@
 /* Comments Section */
 .comments-section {
     padding: 1rem;
-    background-color: #fff;
+    background-color: #19224f;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 2rem;
@@ -129,3 +129,45 @@
     color: #007bff;
 }
 
+.delete-comment {
+    border: none;
+    background: none;
+    color: #c00; /* Red color for the delete icon */
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.btn-icon {
+    display: inline-block;
+    padding: 0;
+}
+
+.btn-icon i {
+    font-size: 1.2rem; /* Icon size */
+}
+
+.comment-content:hover .delete-comment {
+    color: #900; /* Darker red on hover */
+}
+
+
+.edit-comment-text {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.comment-submit, .edit-comment, .save-comment, .cancel-comment, .delete-comment {
+    margin-left: 10px;
+}
+
+
+.hidden {
+    display: none;
+}
+  
+.shown {
+    display: block; 
+}
