@@ -1,17 +1,13 @@
 
 var CommentModel = Backbone.Model.extend({
     url: function() {
-        var base = 'http://localhost/toonflix/api/comments/';
-        if (this.isNew()) {
-            return base + 'create_comment'; // For creating new posts
-        }
-        return base + this.id; // For fetching a specific post
+        return 'http://localhost/toonflix/api/comments/create_comment';       
     },
     defaults: {
-        postId: '',        
+        post:{},        
         content: '',
-        timestamp: '',
-        username: ''
+        created_at: '',  
+        user:{}  
     }
   
 });

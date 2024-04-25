@@ -87,13 +87,13 @@
 
 .comment-author {
     font-weight: 600;
-    color: var(--main-color);
+    color:  #9c0000;
 }
 
 .comment-text {
     margin-top: 0.25rem;
     line-height: 1.4;
-    color: var(--text-color);
+    color:  #000000;
 }
 
 .comment-form {
@@ -119,4 +119,13 @@
     transition: background-color 0.3s ease;
 }
 
+.no-comments {
+    padding: 15px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    margin-top: 20px;
+    color: #007bff;
+}
 

@@ -15,26 +15,42 @@
                 <% }); %>
             </div>
         </div>
+        <div class="comments-container"></div>
     </div>
 </script>
 
 <script type="text/template" id="comment-detail-template">
     <div class="comments-section">
-        <h3>Comments</h3>
-        <ul class="comments-list">
-            <!-- Comment Item -->
-            <li class="comment-item">
-                <div class="comment-content">
-                    <h4 class="comment-author">Alice Smith</h4>
-                    <p class="comment-text">This is a comment text.</p>
-                </div>
-            </li>
-        </ul>
-
-        <form class="comment-form">
-            <h4>Add a comment</h4>
-            <textarea class="comment-input" placeholder="Type your comment here..."></textarea>
-            <button type="submit" class="btn comment-submit">Post Comment</button>
-        </form>
+       
+            <h3>Comments</h3>
+            <ul class="comments-list">
+                <% _.each(comments, function(comment) { %>
+                    <li class="comment-item">
+                        <div class="comment-content">
+                            <h4 class="comment-author">
+                                <%= _.escape(comment.user.username) %>
+                            </h4>
+                            <p class="comment-meta">
+                                Posted on <%= (new Date(comment.created_at.date)).toLocaleString() %>
+                                on "<%= _.escape(comment.post.title) %>"
+                            </p>
+                            <p class="comment-text">
+                                <%= _.escape(comment.content) %>
+                            </p>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        
     </div>
+</script>
+
+
+
+<script type="text/template" id="comment-form-detail-template"> 
+    <form class="comment-form">
+        <h4>Add a comment</h4>
+        <textarea id="content" class="comment-input" placeholder="Type your comment here..."></textarea>
+        <button type="submit" class="btn comment-submit">Post Comment</button>
+    </form>    
 </script>

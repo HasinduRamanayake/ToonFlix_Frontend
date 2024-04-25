@@ -1,6 +1,9 @@
 var CommentsCollection = Backbone.Collection.extend({
-    url: 'http://localhost/toonflix/api/comments/get_all_comments',
-    model: CommentModel
+    model: CommentModel,
+    initialize: function(options) {
+        this.postId = options.id;
+    },
+    url: function() {
+        return 'http://localhost/toonflix/api/comments/get_all_comments/' + this.postId;
+    }
 });
-
-

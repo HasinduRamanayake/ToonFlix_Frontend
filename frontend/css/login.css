@@ -1,7 +1,7 @@
 /* Base styles for body, ensuring full height and centering content */
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../../assets/Login/cbg2.jpg'); /* Replace with your actual background image URL */
+    background-image: url('../../assets/Login/cbg2.webp'); /* Replace with your actual background image URL */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -14,10 +14,10 @@ body {
 
 /* Common form styles */
 form {
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    padding: 40px;
+    background-color: rgba(255, 255, 255, 0); /* Semi-transparent background */
+    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
     width: 300px;
     margin-bottom: 20px; /* Spacing between form and toggle link */
 }
@@ -44,14 +44,15 @@ form input[type="email"] {
 
 /* Button styling */
 form button {
-    width: 100%;
+    width: 80%;
     background-color: #4CAF50;
     color: white;
     padding: 14px 20px;
-    margin: 8px 0;
+    margin: 0 auto;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    
 }
 
 form button:hover {
