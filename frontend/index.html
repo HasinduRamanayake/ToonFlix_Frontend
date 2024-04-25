@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToonFlix</title>
     <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/style.css">
+    <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/postDetailed.css">
 
     <!-- Boxicons CSS (for icons) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -28,8 +29,10 @@
     <script src="js/backbone_app/collections/post_collection.js"></script>
     <script src="js/backbone_app/views/Posts/post_view.js"></script>
     <script src="js/backbone_app/views/Posts/post_create_view.js"></script>
+    <script src="js/backbone_app/views/not_found_view.js"></script>
     <script src="js/backbone_app/views/Posts/posts_view.js"></script>      
-    <script src="js/backbone_app/Router/appRouter.js"></script>
+    <script src="js/backbone_app/Router/app_router.js"></script>
+
     <script src="js/backbone_app/app.js"></script>
 
 
@@ -38,25 +41,25 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
 </head>
-<body>
-    <header>
-        <a href="#dashboard" class="logo">
-            <i class="bx bxs-movie"></i>ToonFlix
-        </a>
-        <div class="bx bx-menu" id="menu-icon"></div>
+    <body>
+        <header>
+            <a href="#dashboard" class="logo">
+                <i class="bx bxs-movie"></i>ToonFlix
+            </a>
+            <div class="bx bx-menu" id="menu-icon"></div>
 
-        <ul class="navbar">
-            <li><a href="#home" class="home-active">Home</a></li>
-            <li><a href="#cartoons">Cartoons</a></li>
-            <li><a href="#upcomings">Upcomings</a></li>
-            <li><a href="#news">News</a></li>
-        </ul>
-        <a href="#create_post" class="btn">Create Post</a>
-    </header>
+            <ul class="navbar">
+                <li><a href="#home" class="home-active">Home</a></li>
+                <li><a href="#cartoons">Cartoons</a></li>
+                <li><a href="#upcomings">Upcomings</a></li>
+                <li><a href="#news">News</a></li>
+            </ul>
+            <a href="#create_post" class="btn">Create Post</a>
+        </header>
 
     
 
-    <div id="app"></div>
+        <div id="app"></div>
        
     </body>
 </html>

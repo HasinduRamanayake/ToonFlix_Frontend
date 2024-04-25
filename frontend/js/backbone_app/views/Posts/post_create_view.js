@@ -24,6 +24,7 @@ var PostFormView = Backbone.View.extend({
 
         var formData = new FormData();
         formData.append('title', this.$('#title').val());
+        formData.append('genre', this.$('#genre').val());
         formData.append('description', this.$('#description').val());
         formData.append('image', this.$('#image')[0].files[0]);
 

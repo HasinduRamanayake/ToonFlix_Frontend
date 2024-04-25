@@ -7,10 +7,10 @@ var PostsCollectionView = Backbone.View.extend({
     loadTemplate: function() {
         var self = this;
         // Fetch the template HTML from an external file
-        $.get('html/postCollectionView.html')
+        $.get('html/dashboard.html')
             .done(function(data) {
                 // Ensure the template element is correctly found within the fetched data
-                var templateHtml = $("<div>").html(data).find('#post-template').html();
+                var templateHtml = $("<div>").html(data).find('#home-template').html();
                 if (templateHtml) {
                     self.template = _.template(templateHtml);
                     self.listenTo(self.collection, 'sync', self.render);  // Listen for the sync event
@@ -47,3 +47,6 @@ var PostsCollectionView = Backbone.View.extend({
         }
     }
 });
+
+
+

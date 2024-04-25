@@ -2,16 +2,20 @@ var DashboardView = Backbone.View.extend({
         
     // Initialization function
     initialize: function() {
+        this.collection = new PostsCollection();
         this.loadTemplate();
     },
     loadTemplate: function() {
         var self = this;
         // Fetch the template HTML from an external file
         $.get('html/dashboard.html', function(data) {
-            var templateHtml = $("<div>").html(data).find('#home-template').html();
-            if (templateHtml) {
-                self.template = _.template(templateHtml);
-                self.render();                
+            var wrapper = $("<div>").html(data); // Wrap the data in a div for easier manipulation
+            self.homeTemplate = _.template(wrapper.find('#home-template').html());
+            self.postsTemplate = _.template(wrapper.find('#post-template').html());
+            if (self.homeTemplate && self.postsTemplate) {
+                 // Render the view once both templates are loaded
+                self.listenTo(self.collection, 'sync', self.render);  // Listen for the sync event
+                self.collection.fetch({reset: true});
             } else {
                 console.error('Template content not found.');
             }
@@ -23,14 +27,16 @@ var DashboardView = Backbone.View.extend({
 
     // Render the template content
     render: function() {
-        if (this.template) {
-            this.$el.html(this.template());
-            // Initialize any sliders or interactive components here
+        if (this.homeTemplate && this.postsTemplate && !this.collection.isEmpty()) {
+            this.$el.html(this.homeTemplate()); // First render the home template
+            this.$el.append(this.postsTemplate({ posts: this.collection.toJSON() })); // Then append the posts rendered from the post template
+
             this.initializeSwiper();
         } else {
-            console.error('Template not loaded yet.');
+            console.error('Templates not loaded or collection is empty.');
         }
-        return this;
+              
+        
     },
 
     // Initialize Swiper

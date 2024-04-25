@@ -1,0 +1,122 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.card-container {
+    max-width: 800px; /* Adjust the width to your preference */
+    margin: 100px auto 20px; /* 100px top margin to create space from the navbar */
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.card-image img {
+    width: 100%; /* Image takes the full width of the container */
+    height: 300px; /* Fixed height for all images */
+    object-fit: cover; /* This will cover the area, cropping the image if necessary */
+    display: block;
+}
+
+.card-header h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    padding: 16px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-genre {
+    background-color: #007bff;
+    color: #f6dada;
+    padding: 8px 16px;
+    font-size: 0.85em;
+    display: inline-block;
+    margin: 16px;
+    border-radius: 16px;
+}
+
+.card-description {
+    padding: 16px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.card-tags {
+    padding: 16px;
+    background-color: #f4f4f4;
+    border-top: 1px solid #ddd;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #e9e9e9;
+    color: #555;
+    padding: 5px 10px;
+    margin-right: 5px;
+    font-size: 0.75em;
+    border-radius: 3px;
+    margin-bottom: 8px;
+}
+
+/* Comments Section */
+.comments-section {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.comments-section h3 {
+    color: var(--main-color);
+    margin-bottom: 1rem;
+}
+
+.comments-list {
+    list-style-type: none;
+}
+
+.comment-item {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: var(--main-color);
+}
+
+.comment-text {
+    margin-top: 0.25rem;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+.comment-form {
+    margin-top: 1rem;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical; /* Allows the user to resize the textarea vertically */
+}
+
+.comment-submit {
+    background-color: var(--main-color);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+

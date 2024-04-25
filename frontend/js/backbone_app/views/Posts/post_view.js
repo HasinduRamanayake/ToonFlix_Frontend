@@ -1,47 +1,49 @@
-var PostFormView = Backbone.View.extend({
-    el: '#app',
-
-    events: {
-        'submit': 'submitPost'
+var PostDetailView = Backbone.View.extend({
+    initialize: function(options) {
+        // options.id will contain the ID of the post to fetch
+        this.model = new PostModel({id: options.id});
+        this.collection = new CommentsCollection();
+        this.loadTemplate(); // Load the template as part of the initialization
     },
 
-    initialize: function() {
-        var self = this;
-        this.model = new PostModel();
-        $.get('html/post.html', function(data) {
-            self.template = data;
-            self.render();
-        });
+    loadTemplate: function() {
+        var self = this; // To handle scoping properly for callbacks
+
+        // Fetch the template HTML from an external file
+        $.get('html/post.html')
+            .done(function(data) {
+             
+                var wrapper = $("<div>").html(data); 
+                self.postTemplate = _.template(wrapper.find('#post-detail-template').html());
+                self.commentTemplate = _.template(wrapper.find('#comment-detail-template').html());
+                if (self.postTemplate) {                   
+                    self.listenTo(self.model, 'sync', self.render); 
+                    self.model.fetch(); 
+                }if(self.commentTemplate){
+                    self.listenTo(self.collection, 'sync',self.render);
+                    self.collection.fetch({reset: true});
+                }else{
+                    console.error('Template content not found.');
+                }   
+                
+            })
+            .fail(function() {
+                console.error('Failed to load the posts template.');
+            });
     },
+
     render: function() {
+      
+        var modelData = this.model.toJSON();
+        var data = modelData.data;
         
-        this.$el.html(this.template);        
+        if (this.postTemplate && this.commentTemplate && !this.collection.isEmpty()) {
+            this.$el.html(this.postTemplate(data));
+            this.$el.append(this.commentTemplate({ comments: this.collection.toJSON() }));
+            
+        } else {
+            console.error('Template has not been loaded.');
+        }
         return this;
-    },
-
-    submitPost: function(e) {
-        e.preventDefault();
-
-        var formData = new FormData();
-        formData.append('title', this.$('#title').val());
-        formData.append('image', this.$('#image')[0].files[0]);
-
-        this.model.save(null, {
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(model, response) {
-                console.log('Successfully uploaded post:', response);
-            },
-            error: function(model, response) {
-                console.log('Failed to upload post:', response);
-            }
-        });
     }
-    
-    
 });
-
-
-
-

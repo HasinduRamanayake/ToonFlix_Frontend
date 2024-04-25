@@ -11,84 +11,13 @@
         <!-- Post Info -->
         <input type="text" id="title" name="title" placeholder="Post Title" required>
         <input type="file" id="image" name="image" required>
+        <label for="image">Browse...</label>
         <textarea id="description" name="description" placeholder="Add a description..." rows="4" cols="50" required></textarea>
 
         <!-- Tags Input -->
         <input type="text" id="tags" name="tags" placeholder="Add tags (comma-separated)" required>
 
        
-        <div class="wrapper">
-        <div class="title">
-            <img src="tag.svg" alt="icon">
-            <h2>Tags</h2>
-        </div>
-        <div class="content">
-            <p>Press enter or add a comma after each tag</p>
-            <ul><input type="text" spellcheck="false"></ul>
-        </div>
-        <div class="details">
-            <p><span>10</span> tags are remaining</p>
-            <button>Remove All</button>
-        </div>
-        </div>
-        <script>
-            const ul = document.querySelector("ul"),
-            input = document.querySelector("input"),
-            tagNumb = document.querySelector(".details span");
-            
-            let maxTags = 10,
-            tags = ["coding", "nepal"];
-            
-            countTags();
-            createTag();
-            
-            function countTags(){
-                input.focus();
-                tagNumb.innerText = maxTags - tags.length;
-            }
-            
-            function createTag(){
-                ul.querySelectorAll("li").forEach(li => li.remove());
-                tags.slice().reverse().forEach(tag =>{
-                    let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="remove(this, '${tag}')"></i></li>`;
-                    ul.insertAdjacentHTML("afterbegin", liTag);
-                });
-                countTags();
-            }
-            
-            function remove(element, tag){
-                let index  = tags.indexOf(tag);
-                tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
-                element.parentElement.remove();
-                countTags();
-            }
-            
-            function addTag(e){
-                if(e.key == "Enter"){
-                    let tag = e.target.value.replace(/\s+/g, ' ');
-                    if(tag.length > 1 && !tags.includes(tag)){
-                        if(tags.length < 10){
-                            tag.split(',').forEach(tag => {
-                                tags.push(tag);
-                                createTag();
-                            });
-                        }
-                    }
-                    e.target.value = "";
-                }
-            }
-            
-            input.addEventListener("keyup", addTag);
-            
-            const removeBtn = document.querySelector(".details button");
-            removeBtn.addEventListener("click", () =>{
-                tags.length = 0;
-                ul.querySelectorAll("li").forEach(li => li.remove());
-                countTags();
-            });
-        </script>
-  
-
         <button type="submit">Create Post</button>
     </form>
 </body>
