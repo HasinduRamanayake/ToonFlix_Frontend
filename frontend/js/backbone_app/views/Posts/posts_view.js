@@ -39,13 +39,7 @@ var PostsCollectionView = Backbone.View.extend({
         return this;
     },
 
-    close: function() {
-        this.remove();  // Remove the view from the DOM
-        this.unbind();  // Unbind all local event bindings
-        if (this.collection) {
-            this.collection.unbind();  // Unbind references to the collection
-        }
-    }
+
 });
 
 

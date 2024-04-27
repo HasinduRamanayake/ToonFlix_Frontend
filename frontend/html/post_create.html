@@ -2,22 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Upload Image</title>
+    <title>Create Post</title>
     <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/post.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/thinline.css">
 </head>
 <body>
     <form id="postForm" enctype="multipart/form-data">
-        <!-- Post Info -->
         <input type="text" id="title" name="title" placeholder="Post Title" required>
         <input type="file" id="image" name="image" required>
+        <input type="text" id="genre" name="genre" placeholder="Post Genre" required>
         <label for="image">Browse...</label>
         <textarea id="description" name="description" placeholder="Add a description..." rows="4" cols="50" required></textarea>
-
-        <!-- Tags Input -->
         <input type="text" id="tags" name="tags" placeholder="Add tags (comma-separated)" required>
-
-       
         <button type="submit">Create Post</button>
     </form>
 </body>

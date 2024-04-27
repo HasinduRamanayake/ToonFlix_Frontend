@@ -1,42 +1,41 @@
 var AuthView = Backbone.View.extend({
     
     initialize: function() {
+        this.loadTemplate();
+    },
+
+    events: {
+        'submit #login-form': 'login',
+        'submit #signup-form': 'signUp',
+        'click #toggle-form': 'toggleForms'
+    },
+
+    loadTemplate: function() {
         var self = this;
-        // Fetch the login.html content
         $.get('html/login.html', function(data) {
             self.template = data;
             self.render();
         });
     },
-    
+
     render: function() {
-        // Use the fetched HTML as the view's template
         this.$el.html(this.template);
-        this.delegateEvents({
-            'submit #login-form': 'login',
-            'submit #signup-form': 'signUp'
-        });
+        this.toggleForms();  // Initially setup forms display
         return this;
     },
 
     login: function(e) {
-        
         e.preventDefault();
-        var userData = {
+        var loginModel = new LoginModel({
             username: this.$('#username').val(),
-            password: this.$('#password').val(),
-        };
-        console.log(userData);
-        $.ajax({
-            url: 'http://localhost/toonflix/api/auth/signin',
-            type: 'POST',
-            data: userData,
-            success: function(response) {
+            password: this.$('#password').val()
+        });
+        loginModel.save(null, {
+            success: function(model, response) {
                 console.log('Login Successful', response);
-                console.log('UserData',userData);
                 Backbone.history.navigate('dashboard', { trigger: true });
             },
-            error: function(error) {
+            error: function(model, error) {
                 console.log('Login Failed', error);
             }
         });
@@ -44,32 +43,27 @@ var AuthView = Backbone.View.extend({
 
     signUp: function(e) {
         e.preventDefault();
-
-        var userData = {
+        var signUpModel = new SignUpModel({
             username: this.$('#new-username').val(),
             password: this.$('#new-password').val(),
-            email: this.$('#email').val(),
-        };
-        console.log("usetData",userData);
-        $.ajax({
-            url: 'http://localhost/toonflix/api/auth/signup',
-            type: 'POST',
-            data: userData,
-            success: function(response) {
-                console.log('Sign Up Successful', response);
-                // Optionally log in the user directly or show a success message
+            email: this.$('#email').val()
+        });
+        var self = this; // Save the current context
+        signUpModel.save(null, {
+            success: function(model, response) {
                 alert("Registration successful. Please log in.");
-                $('#signup-form').hide();
-                $('#login-form').show();
-                $('#toggle-form').text("Don't have an account? Sign Up");
+                self.toggleForms(); // Use self which is bound to the correct context
             },
-            error: function(error) {
+            error: function(model, error) {
                 console.log('Sign Up Failed', error);
             }
         });
+    },
+
+    toggleForms: function() {
+        var loginVisible = this.$('#login-form').is(':visible');
+        this.$('#login-form').toggle(!loginVisible);
+        this.$('#signup-form').toggle(loginVisible);
+        this.$('#toggle-form').text(loginVisible ? "Already have an account? Log In" : "Don't have an account? Sign Up");
     }
 });
-
-
-
-

@@ -1,0 +1,49 @@
+<script type="text/template" id="blog-post-template">
+    <section id="search-bar">
+        <div class="input-group">
+            <input type="text" id="tags-input" placeholder="Enter tags separated by commas" aria-label="Search by tags">
+            <input type="text" id="name-input" placeholder="Enter name to search" aria-label="Search by name" style="display: none;">
+            <button id="search-button">Search</button>
+        </div>
+        <fieldset>            
+            <label for="search-by-tag">
+                <input type="radio" name="searchMode" id="search-by-tag" checked> Search by Tag
+            </label>
+            <label for="search-by-name">
+                <input type="radio" name="searchMode" id="search-by-name"> Search by Name
+            </label>
+        </fieldset>
+    </section>
+    <div id="posts-container"></div>
+    
+    
+</script>
+
+
+
+
+
+
+<script type="text/template" id="post-item-template">
+    <div class="post">
+        <div class="post-header">
+            <h2><%= title %></h2>
+            <a href="#posts/<%= id %>">
+                <div class="post-image-container">
+                    <img src="<%= image_path %>" alt="<%= title %>">
+                </div>
+            </a> 
+        </div>
+        <div class="post-body">            
+            <div><b>Genre:</b> <%= genre %></div>
+            <div>
+                <% _.each(tags, function(tag) { %>
+                  <span class="tag"><%= tag %></span>
+                <% }); %>
+            </div>
+        </div>
+        <div class="post-footer">
+            Posted by: <%= username %>
+        </div>
+    </div>
+</script>

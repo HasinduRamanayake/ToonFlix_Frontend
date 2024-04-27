@@ -1,17 +1,15 @@
-// Login Model
-var LoginModel = Backbone.Model.extend({
-    urlRoot: '/toonflix/api/auth/signin', 
-    defaults: {
-        username: '',
-        password: ''
-    }
-});
-
-var SignUpModel = Backbone.Model.extend({
-    urlRoot: '/toonflix/api/auth/signup', 
+var AuthModel = Backbone.Model.extend({
     defaults: {
         username: '',
         password: '',
-        email: '' 
+        email: ''  // Email is optional for login
     }
+});
+
+var LoginModel = AuthModel.extend({
+    urlRoot: 'http://localhost/toonflix/api/auth/signin'
+});
+
+var SignUpModel = AuthModel.extend({
+    urlRoot: 'http://localhost/toonflix/api/auth/signup'
 });
