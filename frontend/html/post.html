@@ -10,8 +10,8 @@
             <p class="card-genre">Genre: <%= genre %></p>
             <p class="card-description">Description: <%= description %></p>
             <div class="card-tags">
-                <% _.each(tag.split(','), function(singleTag) { %>
-                    <span class="tag"><%= singleTag.trim() %></span>
+                <% _.each(tag, function(singleTag) { %>
+                    <span class="tag">#<%= singleTag %></span>
                 <% }); %>
             </div>
         </div>

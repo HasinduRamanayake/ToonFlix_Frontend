@@ -5,6 +5,8 @@ var AppRouter = Backbone.Router.extend({
         "create_post": "createPost",
         "home": "home",
         "posts/:id": "showDetailedPost",
+        "blog_posts": "blogPostsPage",
+        "my_library": "library",
         "*path": "notFoundPage"
     },
 
@@ -22,8 +24,8 @@ var AppRouter = Backbone.Router.extend({
         new PostFormView({el:'#app'});       
     },
 
-    home: function(){
-        // new PostsCollectionView({el:'#app'});
+    library: function(){
+        new MyLibraryView({el:'#app'});
     },
     
     notFoundPage: function(){
@@ -32,12 +34,11 @@ var AppRouter = Backbone.Router.extend({
 
     showDetailedPost: function(id) {
         new PostDetailView({id: id, el:'#app', currentUser:'100'});
+    },
+
+    blogPostsPage: function(){
+
+        new BlogPostView({el:'#app'});
     }
-
-    
-    
-
-
-    
-    
+   
 });

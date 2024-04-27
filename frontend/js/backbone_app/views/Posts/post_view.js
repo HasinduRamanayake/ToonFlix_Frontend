@@ -61,6 +61,7 @@ var PostDetailView = Backbone.View.extend({
       
         var modelData = this.model.toJSON();
         var data = modelData.data;
+        console.log("DAta",data);
         
         if (this.postTemplate ) {
             this.$el.html(this.postTemplate(data));
@@ -101,8 +102,7 @@ var PostDetailView = Backbone.View.extend({
 
     createComment: function(e){
         e.preventDefault();
-
-
+        
         var content = this.$('#content').val();
         var comment = new CommentModel({
             content: content,

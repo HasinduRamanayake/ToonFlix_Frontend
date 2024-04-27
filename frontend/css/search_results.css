@@ -1,0 +1,158 @@
+
+/* Search Bar Styles */
+#search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.input-group {
+  display: flex;
+  width: 80%; /* 80% of the screen width */
+  margin: 0 auto; /* Centers the input group horizontally */
+}
+
+#search-bar input[type="text"] {
+  flex-grow: 1; /* Allows input field to take available space */
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px 0 0 25px; /* Rounded corners on the left side */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.2s;
+  margin-right: -1px; /* Overlap border with button to look attached */
+}
+
+#search-button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0 25px 25px 0; /* Rounded corners on the right side */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#search-button:hover, #search-button:focus {
+  background-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 86, 179, 0.8);
+}
+
+fieldset {
+  display: flex; /* Enables flexbox layout for children, which are the labels */
+  justify-content: center; /* Centers the labels horizontally in the fieldset */
+  align-items: center; /* Aligns the labels vertically */
+  border: none;
+  padding: 0;
+  margin: 1rem auto;
+  width: 80%; /* Match the width of the input group */
+}
+
+#search-bar label {
+  font-size: 14px;
+  color: #ffffff;
+  margin: 0 10px; /* Adjust the horizontal margin to decrease gap */
+  flex: 1; /* Each label will take equal space */
+  text-align: center; /* Center text inside each label */
+}
+
+#search-bar input[type="radio"] {
+  margin-right: 0.5rem; /* Small right margin for the radio buttons */
+}
+
+/* Container for the cards */
+.post {
+  background-color: #454850;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 5px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.post-header {
+  padding: 15px;
+  border-bottom: 1px solid #283f6d;
+}
+
+.post-header h2 {
+  font-size: 18px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Image container */
+.post-image-container {
+  width: 100%;
+  height: 120px; /* Fixed height for image container */
+  overflow: hidden;
+  display: flex; /* Ensures that the child image can be centered */
+  align-items: center; /* Vertically centers the image if it's not tall enough */
+  justify-content: center; /* Horizontally centers the image if it's not wide enough */
+}
+
+.post-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the area, cropping as needed */
+}
+
+.post-body {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.post-body div {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.post-footer {
+  padding: 15px;
+  border-top: 1px solid #eee;
+  color: #ffffff;
+  font-size: 14px;
+  text-align: right;
+  background-color: #f9f9f9;
+  opacity: 0.4;
+}
+
+.post-body .tag {
+  display: inline-block;
+  background-color: #007bff; /* Tag background color */
+  color: #fff; /* Text color */
+  padding: 5px 10px; /* Spacing inside tags */
+  margin: 2px; /* Spacing between tags */
+  border-radius: 3px; /* Rounded corners for tags */
+  font-size: 12px; /* Smaller font size for tag text */
+  white-space: nowrap; /* Prevents tags from breaking into multiple lines */
+}
+
+/* Responsive considerations */
+@media (max-width: 600px) {
+  .post {
+    width: auto; /* Takes the full width of the screen minus the margin */
+    height: auto; /* Height adjusts to content */
+    margin: 20px;
+  }
+  .post-image-container {
+    height: auto; /* Image container adjusts to the image height */
+  }
+}
+#posts-container {
+  display: flex;
+  flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
+  justify-content: space-around; /* Evenly spaces the cards with space around them */
+  align-items: flex-start; /* Aligns items to the top */
+  gap: 10px; /* Optional: Adds a gap between cards */
+}
+  

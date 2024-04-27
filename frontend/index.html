@@ -10,6 +10,8 @@
     <title>ToonFlix</title>
     <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/style.css">
     <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/postDetailed.css">
+    <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/search_results.css">
+    <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/library.css">
 
     <!-- Boxicons CSS (for icons) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -32,8 +34,10 @@
     <script src="js/backbone_app/collections/comment_collection.js"></script>
     <script src="js/backbone_app/views/Posts/post_view.js"></script>
     <script src="js/backbone_app/views/Posts/post_create_view.js"></script>
+    <script src="js/backbone_app/views/blog_posts_view.js"></script>
     <script src="js/backbone_app/views/not_found_view.js"></script>
-    <script src="js/backbone_app/views/Posts/posts_view.js"></script>      
+    <script src="js/backbone_app/views/Posts/posts_view.js"></script>   
+    <script src="js/backbone_app/views/my_library_view.js"></script> 
     <script src="js/backbone_app/Router/app_router.js"></script>
 
     <script src="js/backbone_app/app.js"></script>
@@ -53,14 +57,12 @@
 
             <ul class="navbar">
                 <li><a href="#home" class="home-active">Home</a></li>
-                <li><a href="#blogposts">Blog Posts</a></li>
-                <li><a href="#mylibrary">My Library</a></li>
+                <li><a href="#blog_posts">Blog Posts</a></li>
+                <li><a href="#my_library">My Library</a></li>
                 
             </ul>
             <a href="#create_post" class="btn">Create Post</a>
-        </header>
-
-    
+        </header>    
 
         <div id="app"></div>
        

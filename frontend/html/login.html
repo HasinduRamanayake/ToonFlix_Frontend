@@ -2,27 +2,6 @@
     <head>
     
         <link rel="stylesheet" href="/ToonFlix_Frontend/frontend/css/login.css">
-
-        <script>      
-            $(document).ready(function() {
-                new AuthView({el: 'section'});   
-
-                // Toggle between login and signup view
-                $('#toggle-form').click(function(e) {
-                    e.preventDefault();
-                    if ($('#login-form').is(':visible')) {
-                        $('#login-form').hide();
-                        $('#signup-form').show();
-                        $(this).text('Already have an account? Log In');
-                    } else {
-                        $('#signup-form').hide();
-                        $('#login-form').show();
-                        $(this).text('Don\'t have an account? Sign Up');
-                    }
-                });
-            });
-        </script>
-
     </head>
 
     <body>
