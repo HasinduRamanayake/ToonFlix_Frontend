@@ -14,6 +14,9 @@
                     <span class="tag">#<%= singleTag %></span>
                 <% }); %>
             </div>
+            <button class="like-post <%= likedByCurrentUser ? 'liked' : '' %>">
+                <%= likedByCurrentUser ? 'Unlike' : 'Like' %>
+            </button>
         </div>
         <div class="comments-container"></div>
     </div>

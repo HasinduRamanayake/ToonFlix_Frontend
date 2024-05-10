@@ -36,7 +36,14 @@ var AuthView = Backbone.View.extend({
                 Backbone.history.navigate('dashboard', { trigger: true });
             },
             error: function(model, error) {
-                console.log('Login Failed', error);
+                console.log('Login Failed', error);                
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unauthorized',
+                    text: 'Please Sign Up If you havent created an account yet',
+                    
+                });         
+                
             }
         });
     },
@@ -51,11 +58,21 @@ var AuthView = Backbone.View.extend({
         var self = this; // Save the current context
         signUpModel.save(null, {
             success: function(model, response) {
-                alert("Registration successful. Please log in.");
-                self.toggleForms(); // Use self which is bound to the correct context
+            
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    text: 'Please Login!',                    
+                }); 
+                self.toggleForms(); 
             },
             error: function(model, error) {
                 console.log('Sign Up Failed', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Registration Unsuccessful',
+                    text: 'Please Try Again!'+ response,                    
+                }); 
             }
         });
     },

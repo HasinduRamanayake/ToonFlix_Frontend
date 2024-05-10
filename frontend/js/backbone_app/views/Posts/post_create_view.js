@@ -38,7 +38,11 @@ var PostFormView = Backbone.View.extend({
             contentType: false,
             success: (model, response) => {
                 console.log('Successfully uploaded post:', response);
-                alert('Post created successfully!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Post Created Succesfully'
+                                    
+                }); 
                 this.model.set(this.model.defaults); // Reset model after successful submission
                 this.render(); // Re-render the view to reset the form fields
             },

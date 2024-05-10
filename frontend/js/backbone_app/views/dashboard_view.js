@@ -15,7 +15,18 @@ var DashboardView = Backbone.View.extend({
             if (self.homeTemplate && self.postsTemplate) {
                  // Render the view once both templates are loaded
                 self.listenTo(self.collection, 'sync', self.render);  // Listen for the sync event
-                self.collection.fetch({reset: true});
+                self.collection.fetch({
+                    reset: true,
+                    error: function() {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: 'No Posts in the Database',
+                            footer: 'Be the first one to create post'
+                        });
+                       
+                    }
+                });
             } else {
                 console.error('Template content not found.');
             }
@@ -39,7 +50,7 @@ var DashboardView = Backbone.View.extend({
         
     },
 
-    // Initialize Swiper
+    
     initializeSwiper: function() {
         new Swiper('.swiper', {
             loop: true,
@@ -55,5 +66,10 @@ var DashboardView = Backbone.View.extend({
                 disableOnInteraction: false,
             }
         });
-    }
+    },
+    removeView: function() {      
+        this.undelegateEvents();       
+        this.$el.remove();        
+        this.stopListening();        
+    },
 });
