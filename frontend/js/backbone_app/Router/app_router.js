@@ -10,6 +10,14 @@ var AppRouter = Backbone.Router.extend({
         "*path": "notFoundPage"
     },
 
+    initialize: function() {
+        this.rootEl = $('#app');  
+    },
+
+    clearEvents: function() {
+        // Elimanating all event handlers attached to the root element
+        this.rootEl.off(); 
+    },
    
     login: function() {
         console.log("Login route is called.");
@@ -17,6 +25,14 @@ var AppRouter = Backbone.Router.extend({
        
     },
     dashboard: function() {
+        if (this.currentDetailView) {
+            this.currentDetailView.undelegateEvents();
+            if (this.currentDetailView.removeView) {
+                this.currentDetailView.removeView(); // Custom cleanup method if defined
+            } else {
+                this.currentDetailView.remove(); // Removes view from DOM and unbinds events
+            }
+        }
         new DashboardView({el:'#app'});
     },
 
@@ -32,13 +48,17 @@ var AppRouter = Backbone.Router.extend({
         new NotFoundView({el:'#app'});
     },
 
-    showDetailedPost: function(id) {
-        new PostDetailView({id: id, el:'#app', currentUser:'100'});
-    },
+    
 
     blogPostsPage: function(){
 
         new BlogPostView({el:'#app'});
-    }
+    },    
+
+    showDetailedPost: function(id) {
+        this.clearEvents(); 
+
+        new PostDetailView({id: id, el:'#app', currentUser:'1'});        
+    },
    
 });

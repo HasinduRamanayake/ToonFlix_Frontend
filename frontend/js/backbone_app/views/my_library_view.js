@@ -22,7 +22,17 @@ var MyLibraryView = Backbone.View.extend({
             if (self.libraryItemTemplate) {
                 
                 self.listenTo(self.collection, 'sync', self.renderPosts); 
-                self.collection.fetch({reset: true});                
+                self.collection.fetch({reset: true,
+                    error: function(e) {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Oops...',
+                            text: e.response,
+                            footer: 'Be the first one to create post'
+                        });
+                       
+                    }
+                });                
             } else {
                 console.error('Template content not found.');
             }

@@ -19,6 +19,8 @@ var PostModel = Backbone.Model.extend({
         description: '',
         tag: '',
         image_path: '',
+        likes: '',
+        likeCount: '',
         username: '',
         createdAt:'',
     },
