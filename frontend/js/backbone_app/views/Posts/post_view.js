@@ -15,6 +15,7 @@ var PostDetailView = Backbone.View.extend({
         this.collection = new CommentsCollection({id: options.id});
         this.currentUser = options.currentUser;
         this.listenTo(this.collection, 'update', this.commentRender);
+        this.listenTo(this.collection, 'add', this.commentRender);
         this.listenTo(this.model, 'update', this.postRender);
         console.log('UserID',this.currentUser);
         this.loadTemplate(); // Load the template as part of the initialization
@@ -130,7 +131,9 @@ var PostDetailView = Backbone.View.extend({
         var content = this.$('#content').val();
         var comment = new CommentModel({
             content: content,
-            post_id: this.model.id
+            post_id: this.model.id,
+            user: {username:'Lofy'} //Need to Replace with JWT
+
         });
 
         comment.save(null, {
