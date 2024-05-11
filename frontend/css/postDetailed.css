@@ -1,3 +1,14 @@
+:root {
+    --main-color: #007bff;  /* Blue */
+    --secondary-color: #f6dada; /* Light red */
+    --text-color: #ffffff;
+    --highlight-color: #ff0000; /* Red */
+    --background-color: #f4f4f4;
+    --comment-background: #19224f; /* Dark blue */
+    --delete-color: #c00; /* Dark red */
+    --icon-color: #bbb;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,18 +16,18 @@
 }
 
 .card-container {
-    max-width: 100%; /* Adjust the width to your preference */
-    margin: 100px auto 20px; /* 100px top margin to create space from the navbar */
+    max-width: 100%;
+    margin: 100px auto 20px;
     background-color: #314372;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-  
+
 .card-image img {
-    width: 100%; /* Image takes the full width of the container */
-    height: 300px; /* Fixed height for all images */
-    object-fit: cover; /* This will cover the area, cropping the image if necessary */
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
     display: block;
 }
 
@@ -30,8 +41,8 @@
 }
 
 .card-genre {
-    background-color: #007bff;
-    color: #f6dada;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
     padding: 8px 16px;
     font-size: 0.85em;
     display: inline-block;
@@ -41,13 +52,13 @@
 
 .card-description {
     padding: 16px;
-    color: #666;
+    color: var(--text-color);
     line-height: 1.6;
 }
 
 .card-tags {
     padding: 16px;
-    background-color: #f4f4f4;
+    background-color: var(--background-color);
     border-top: 1px solid #ddd;
 }
 
@@ -62,10 +73,9 @@
     margin-bottom: 8px;
 }
 
-/* Comments Section */
 .comments-section {
     padding: 1rem;
-    background-color: #19224f;
+    background-color: var(--comment-background);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 2rem;
@@ -87,13 +97,13 @@
 
 .comment-author {
     font-weight: 600;
-    color:  #9c0000;
+    color: var(--delete-color);
 }
 
 .comment-text {
     margin-top: 0.25rem;
     line-height: 1.4;
-    color:  #000000;
+    color: #000;
 }
 
 .comment-form {
@@ -106,7 +116,7 @@
     margin-bottom: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical; /* Allows the user to resize the textarea vertically */
+    resize: vertical;
 }
 
 .comment-submit {
@@ -126,32 +136,50 @@
     border: 1px solid #e1e1e1;
     border-radius: 4px;
     margin-top: 20px;
-    color: #007bff;
-}
-
-.delete-comment {
-    border: none;
-    background: none;
-    color: #c00; /* Red color for the delete icon */
-    cursor: pointer;
-    padding: 5px;
-    margin-left: 10px;
-    vertical-align: middle;
+    color: var(--main-color);
 }
 
 .btn-icon {
-    display: inline-block;
-    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: var(--icon-color);
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
 }
 
-.btn-icon i {
-    font-size: 1.2rem; /* Icon size */
+
+.like-post{
+    color: #bbb;
+}
+.btn-icon:hover {
+    color: var(--highlight-color); 
 }
 
-.comment-content:hover .delete-comment {
-    color: #900; /* Darker red on hover */
+.like-post {
+    color: #ffffff;
 }
 
+.like-post:hover {
+    color: var(--highlight-color); 
+}
+
+.like-post.liked {
+    color: var(--highlight-color);
+}
+
+
+.delete-comment-button {
+    color: var(--delete-color);
+}
+
+.delete-comment-button:hover {
+    color: #900;
+}
 
 .edit-comment-text {
     width: 100%;
@@ -163,11 +191,10 @@
     margin-left: 10px;
 }
 
-
 .hidden {
     display: none;
 }
-  
+
 .shown {
-    display: block; 
+    display: block;
 }

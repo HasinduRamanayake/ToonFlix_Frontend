@@ -14,9 +14,11 @@
                     <span class="tag">#<%= singleTag %></span>
                 <% }); %>
             </div>
-            <button class="like-post <%= likedByCurrentUser ? 'liked' : '' %>">
-                <%= likedByCurrentUser ? 'Unlike' : 'Like' %>
+            <button class="like-post btn-icon <%= likedByCurrentUser ? 'liked' : '' %>" aria-label="<%= likedByCurrentUser ? 'Unlike this post' : 'Like this post' %>">
+                <i class="<%= likedByCurrentUser ? 'far fa-heart' : 'fas fa-heart' %>"></i>
             </button>
+                      
+            
         </div>
         <div class="comments-container"></div>
     </div>
@@ -37,11 +39,10 @@
                             <textarea class="edit-comment-text" style="display: none;" data-id="<%= comment.id %>"><%= _.escape(comment.content) %></textarea>
                         </div>
                         <% if (comment.user.id == currentUser) { %>
-                            <button class="edit-comment" data-id="<%= comment.id %>">Edit</button>
-                            <button class="delete-comment" data-id="<%= comment.id %>">Delete</button>
-                            <button class="save-comment" data-id="<%= comment.id %>" style="display: inline-block;">Save</button>
-                            <button class="cancel-comment" data-id="<%= comment.id %>" style="display: inline-block;">Cancel</button>
-
+                            <button class="edit-comment-button btn-icon" data-id="<%= comment.id %>"><i class="fas fa-edit"></i></button>
+                            <button class="delete-comment-button btn-icon" data-id="<%= comment.id %>"><i class="fas fa-trash"></i></button>
+                            <button class="save-comment-button btn-icon" data-id="<%= comment.id %>" style="display: none;"><i class="fas fa-save"></i></button>
+                            <button class="cancel-comment-button btn-icon" data-id="<%= comment.id %>" style="display: none;"><i class="fas fa-times"></i></button>                     
                         <% } %>
                     </div>
                 </li>
