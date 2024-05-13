@@ -28,8 +28,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.4.0/backbone-min.js"></script>
-    <script src="js/backbone_app/models/Auth/login_model.js"></script>
-    <script src="js/backbone_app/views/Auth/login_view.js"></script>
+    <script src="js/backbone_app/models/Auth/auth_model.js"></script>
+    <script src="js/backbone_app/models/Auth/auth_service.js"></script>
+    <script src="js/backbone_app/views/Auth/auth_view.js"></script>
     <script src="js/backbone_app/views/dashboard_view.js"></script>
     <script src="js/backbone_app/models/Posts/post_model.js"></script>  
     <script src="js/backbone_app/models/Posts/comment_model.js"></script>  
@@ -64,7 +65,7 @@
                 <li><a href="#my_library" >My Library</a></li>                
             </ul>
             <a href="#create_post" id="createPostButton" class="btn">Create Post</a>
-            
+            <a href="#signout" class="btn">SignOut</a>            
         </header>    
 
         <div id="app"></div>

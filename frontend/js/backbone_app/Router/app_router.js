@@ -7,6 +7,7 @@ var AppRouter = Backbone.Router.extend({
         "posts/:id": "showDetailedPost",
         "blog_posts": "blogPostsPage",
         "my_library": "library",
+        'signout': 'signOut',
         "*path": "notFoundPage"
     },
 
@@ -18,11 +19,11 @@ var AppRouter = Backbone.Router.extend({
     handleRouteChange: function(routeName) {        
         var routesWithoutCreatePostButton = ['createPost', 'login', 'showDetailedPost'];
         var routesWithoutNavBar = ['login']
-        this.toggleCreatePostButton(!routesWithoutCreatePostButton.includes(routeName), !routesWithoutNavBar.includes(routeName));
+        this.toggleNavBarLinks(!routesWithoutCreatePostButton.includes(routeName), !routesWithoutNavBar.includes(routeName));
     },
 
-    toggleCreatePostButton: function(showCreatePostButton, showNavbarLinks) {
-        $('#createPostButton').css('display', showCreatePostButton ? 'inline-block' : 'none');
+    toggleNavBarLinks: function(showCreatePostButton, showNavbarLinks) {
+        $('.btn').css('display', showCreatePostButton ? 'inline-block' : 'none');
         $('#links').css('display', showNavbarLinks ? 'flex' : 'none');
     },
 
@@ -33,20 +34,26 @@ var AppRouter = Backbone.Router.extend({
    
     login: function() {
         console.log("Login route is called.");
+      
+        
         new AuthView({el:'#app'}); 
-       
+        
     },
     dashboard: function() {
-        new DashboardView({el:'#app'});
-        this.updateNavigation('dashboard');
+        AuthService.validateSession().then(() => {
+            new DashboardView({el:'#app'});
+            this.updateNavigation('dashboard');
+        }).catch(error => console.error(error));
     },
 
     createPost: function(){
+        AuthService.validateSession();
         new PostFormView({el:'#app'});   
             
     },
 
     library: function(){
+        AuthService.validateSession();
         new MyLibraryView({el:'#app'});
         this.updateNavigation('my_library');
     },
@@ -57,16 +64,23 @@ var AppRouter = Backbone.Router.extend({
    
 
     blogPostsPage: function(){
-
+        AuthService.validateSession();
         new BlogPostView({el:'#app'});
         this.updateNavigation('blog_posts');
     },    
 
     showDetailedPost: function(id) {
+        AuthService.validateSession();
         this.clearEvents(); 
         new PostDetailView({id: id, el:'#app'});       
        
     },
+
+    signOut: function() {
+        AuthService.signOut();
+        this.clearEvents(); 
+    },
+    
 
     updateNavigation: function(activeRoute) {
         
