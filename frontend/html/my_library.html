@@ -1,23 +1,28 @@
 <script type="text/template" id="my-library-template">
     <div class="post-edit-container" data-post-id="<%- id %>">
-        <h1 class="post-title-view"><%- title %></h1>
-        <input class="post-title-edit" type="text" value="<%- title %>" style="display: none;"/>
-
         <img class="concept-art" src="<%- image_path %>" alt="<%- title %>">
+        
+        <div class="text-content">
+            <h1 class="post-title-view"><%- title %></h1>
+            <input class="post-title-edit" type="text" value="<%- title %>" style="display: none;"/>
 
-        <p class="post-description-view"><%- description %></p>
-        <textarea class="post-description-edit" style="display: none;"><%- description %></textarea>
+            <p class="post-description-view"><%- description %></p>
+            <textarea class="post-description-edit" style="display: none;"><%- description %></textarea>
 
-        <ul class="post-tags-view">
-            <% _.each(tags, function(tag) { %>
-                <li><%- tag %></li>
-            <% }); %>
-        </ul>
-        <input class="post-tags-edit" type="text" value="<%- tags.join(', ') %>" style="display: none;"/>
+            <ul class="post-tags-view">
+                <% _.each(tags, function(tag) { %>
+                    <li>#<%- tag %></li>
+                <% }); %>
+            </ul>
+            
+            <input class="post-tags-edit" type="text" value="<%- tags.join(', ') %>" style="display: none;"/>
 
-        <button class="edit-post-button">Edit</button>
-        <button class="save-updates-button" style="display: none;">Save</button>
-        <button class="cancel-updates-button" style="display: none;">Cancel</button>
-        <button class="delete-post-button">Delete</button>
+            <div class="button-group">
+                <button class="edit-post-button"><i class="fas fa-edit"></i></button>
+                <button class="save-updates-button" style="display: none;"><i class="fas fa-save"></i></button>
+                <button class="cancel-updates-button" style="display: none;"><i class="fas fa-times"></i></button>
+                <button class="delete-post-button"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
     </div>
 </script>

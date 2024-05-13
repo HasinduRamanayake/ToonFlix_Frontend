@@ -38,7 +38,7 @@
                             <p class="comment-text" style="display: inline-block;"><%= _.escape(comment.content) %></p>
                             <textarea class="edit-comment-text" style="display: none;" data-id="<%= comment.id %>"><%= _.escape(comment.content) %></textarea>
                         </div>
-                        <% if (comment.user.id == currentUser) { %>
+                        <% if (comment.user.id == currentUserId) { %>
                             <button class="edit-comment-button btn-icon" data-id="<%= comment.id %>"><i class="fas fa-edit"></i></button>
                             <button class="delete-comment-button btn-icon" data-id="<%= comment.id %>"><i class="fas fa-trash"></i></button>
                             <button class="save-comment-button btn-icon" data-id="<%= comment.id %>" style="display: none;"><i class="fas fa-save"></i></button>
@@ -59,6 +59,6 @@
     <form class="comment-form">
         <h4>Add a comment</h4>
         <textarea id="content" class="comment-input" placeholder="Type your comment here..."></textarea>
-        <button type="submit" class="btn comment-submit">Post Comment</button>
+        <button type="submit" class="btn-comment comment-submit">Post Comment</button>
     </form>    
 </script>

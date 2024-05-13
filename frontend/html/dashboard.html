@@ -2,7 +2,7 @@
     <section class="home swiper" id="home">
         <div class="swiper-wrapper">
             <div class="swiper-slide container">
-                <img src="/ToonFlix_Frontend/assets/images/home1.jpg" alt="">
+                <img src="/ToonFlix_Frontend/assets/images/ToonFlix_Welcome.webp" alt="">
                 <div class="home-text">
                     <span>Avatar</span>
                     <h1> The last Airbender </h1>
@@ -55,15 +55,19 @@
             <div class="box">
                 <div class="box-image">
                     <% if (post.imagePath) { %>
-                        <!-- Wrap the image in an anchor tag with a URL hash fragment -->
                         <a href="#posts/<%= post.id %>">
                             <img src="<%= post.imagePath %>" alt="Post image">
+                            <div class="like-overlay">
+                                <%= post.likeCount %> <i class='fas fa-heart'></i>
+                            </div>
                         </a>
                     <% } %>
                 </div>
                 <h3><%= post.title %></h3>
                 <span>Genre: <%= post.genre %></span>
+                <span><b>Created By <%= post.username %></b></span>
             </div>
         <% }); %>
     </div>
+    
 </script>

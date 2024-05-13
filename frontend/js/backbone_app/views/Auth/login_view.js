@@ -33,6 +33,7 @@ var AuthView = Backbone.View.extend({
         loginModel.save(null, {
             success: function(model, response) {
                 console.log('Login Successful', response);
+                localStorage.setItem('user', JSON.stringify(model.toJSON()));
                 Backbone.history.navigate('dashboard', { trigger: true });
             },
             error: function(model, error) {
@@ -75,6 +76,9 @@ var AuthView = Backbone.View.extend({
                 }); 
             }
         });
+    },
+    signOut: function(e){
+        
     },
 
     toggleForms: function() {

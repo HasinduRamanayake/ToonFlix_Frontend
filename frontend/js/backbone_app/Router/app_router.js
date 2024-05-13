@@ -3,7 +3,7 @@ var AppRouter = Backbone.Router.extend({
         "": "login",
         "dashboard": "dashboard",
         "create_post": "createPost",
-        "home": "home",
+        "home": "dashboard",
         "posts/:id": "showDetailedPost",
         "blog_posts": "blogPostsPage",
         "my_library": "library",
@@ -12,6 +12,18 @@ var AppRouter = Backbone.Router.extend({
 
     initialize: function() {
         this.rootEl = $('#app');  
+        // Listener to change the visibility of navbar links
+        this.listenTo(this, 'route', this.handleRouteChange);
+    },
+    handleRouteChange: function(routeName) {        
+        var routesWithoutCreatePostButton = ['createPost', 'login', 'showDetailedPost'];
+        var routesWithoutNavBar = ['login']
+        this.toggleCreatePostButton(!routesWithoutCreatePostButton.includes(routeName), !routesWithoutNavBar.includes(routeName));
+    },
+
+    toggleCreatePostButton: function(showCreatePostButton, showNavbarLinks) {
+        $('#createPostButton').css('display', showCreatePostButton ? 'inline-block' : 'none');
+        $('#links').css('display', showNavbarLinks ? 'flex' : 'none');
     },
 
     clearEvents: function() {
@@ -25,40 +37,42 @@ var AppRouter = Backbone.Router.extend({
        
     },
     dashboard: function() {
-        if (this.currentDetailView) {
-            this.currentDetailView.undelegateEvents();
-            if (this.currentDetailView.removeView) {
-                this.currentDetailView.removeView(); // Custom cleanup method if defined
-            } else {
-                this.currentDetailView.remove(); // Removes view from DOM and unbinds events
-            }
-        }
         new DashboardView({el:'#app'});
+        this.updateNavigation('dashboard');
     },
 
     createPost: function(){
-        new PostFormView({el:'#app'});       
+        new PostFormView({el:'#app'});   
+            
     },
 
     library: function(){
         new MyLibraryView({el:'#app'});
+        this.updateNavigation('my_library');
     },
     
     notFoundPage: function(){
         new NotFoundView({el:'#app'});
     },
-
-    
+   
 
     blogPostsPage: function(){
 
         new BlogPostView({el:'#app'});
+        this.updateNavigation('blog_posts');
     },    
 
     showDetailedPost: function(id) {
         this.clearEvents(); 
-
-        new PostDetailView({id: id, el:'#app', currentUser:'1'});        
+        new PostDetailView({id: id, el:'#app'});       
+       
     },
+
+    updateNavigation: function(activeRoute) {
+        
+        $('.navbar li a').removeClass('home-active');
+        
+        $(`.navbar li a[href='#${activeRoute}']`).addClass('home-active');
+    }
    
 });

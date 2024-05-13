@@ -9,49 +9,49 @@ body {
 /* Container for all posts */
 .posts-container {
     display: flex;
-    flex-wrap: wrap; /* Allows cards to wrap to the next line */
-    justify-content: center; /* Center the cards within the container */
-    padding: 20px; /* Padding around the container */
+    flex-wrap: wrap; 
+    justify-content: center; 
+    padding: 20px; 
 }
 
 /* Styling for each post card */
 .post {
-    background-color: white; /* White background for the cards */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    border-radius: 8px; /* Rounded corners */
-    margin: 10px; /* Margin around each card */
-    width: 300px; /* Fixed width for consistency */
-    overflow: hidden; /* Ensures no content spills out */
-    transition: transform 0.3s ease; /* Smooth animation for hover effect */
+    background-color: white; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px;
+    margin: 10px; 
+    width: 300px; 
+    overflow: hidden; 
+    transition: transform 0.3s ease; 
 }
 
 .post:hover {
-    transform: translateY(-5px); /* Slightly raise the card on hover */
+    transform: translateY(-5px); 
 }
 
 /* Styling for post titles */
 .post h3 {
-    color: #333; /* Dark grey color for text */
-    padding: 15px; /* Padding around text */
-    margin: 0; /* Remove default margin */
-    background-color: #007BFF; /* Blue background for the title */
-    color: white; /* White text */
-    text-align: center; /* Center-align text */
+    color: #333; 
+    padding: 15px; 
+    margin: 0;
+    background-color: #007BFF; 
+    color: white; 
+    text-align: center; 
 }
 
 /* Styling for images within posts */
 .post img {
-    width: 100%; /* Full width of the card */
-    height: auto; /* Maintain aspect ratio */
-    border-bottom: 1px solid #ccc; /* Line to separate image from text */
+    width: 100%;
+    height: auto; 
+    border-bottom: 1px solid #ccc; 
 }
 
 /* Styling for the genre text */
 .post p {
-    font-size: 16px; /* Reasonable font size for readability */
-    color: #666; /* Medium grey for text */
-    padding: 10px 15px; /* Padding for some breathing room */
-    margin: 0; /* Remove default margin */
-    background-color: #f8f8f8; /* Very light grey background */
-    border-top: 1px solid #eee; /* Subtle line at the top */
+    font-size: 16px; 
+    color: #666; 
+    padding: 10px 15px; 
+    margin: 0; 
+    background-color: #f8f8f8; 
+    border-top: 1px solid #eee; 
 }
