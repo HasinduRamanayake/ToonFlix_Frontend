@@ -13,12 +13,13 @@ var PostDetailView = Backbone.View.extend({
         
         this.model = new PostModel({id: options.id});        
         this.collection = new CommentsCollection({id: options.id});
-        this.currentUser = options.currentUser;
+        this.currentUser = JSON.parse(localStorage.getItem('user'));
+        this.currentUserId = this.currentUser.data.userId;
         this.listenTo(this.collection, 'update', this.commentRender);
         this.listenTo(this.collection, 'add', this.commentRender);
         this.listenTo(this.model, 'update', this.postRender);
-        console.log('UserID',this.currentUser);
-        this.loadTemplate(); // Load the template as part of the initialization
+        console.log('UserID',this.currentUserId);
+        this.loadTemplate(); 
     },
 
     loadTemplate: function() {
@@ -40,7 +41,7 @@ var PostDetailView = Backbone.View.extend({
                     console.log('likes',likes);
                     // Checking if any of the likes belong to the current user
                     var likedByCurrentUser = likes.some(function(like) {
-                        return like.user_id == self.currentUser && responseData.id == self.model.id;
+                        return like.user_id == self.currentUserId && responseData.id == self.model.id;
                     });
                     console.log(likedByCurrentUser)
                     self.model.set('likedByCurrentUser', likedByCurrentUser);
@@ -86,7 +87,7 @@ var PostDetailView = Backbone.View.extend({
             likeButton.toggleClass('liked', !isLiked);
             likeButton.find('i').toggleClass('fas fa-heart far fa-heart');
 
-            // Ensuring that events are delegated after rendering
+            
             this.delegateEvents();
         } else {
             console.error('Template has not been loaded.');
@@ -102,7 +103,7 @@ var PostDetailView = Backbone.View.extend({
         if (this.commentTemplate) {
             var commentsJson = this.collection.toJSON();
             if (!this.collection.isEmpty()) {
-                commentsHtml = this.commentTemplate({ comments: commentsJson, currentUser: this.currentUser });
+                commentsHtml = this.commentTemplate({ comments: commentsJson, currentUserId: this.currentUserId });
             } else {
                 commentsHtml = "<div class='no-comments'>No comments. Be the first one to respond.</div>";
             }
@@ -126,10 +127,11 @@ var PostDetailView = Backbone.View.extend({
         e.preventDefault();
         
         var content = this.$('#content').val();
+        var userData = localStorage.getItem('user');
         var comment = new CommentModel({
             content: content,
             post_id: this.model.id,
-            user: {username:'Lofy'} //Need to Replace with JWT
+            user: {username:JSON.parse(userData).username}
 
         });
 

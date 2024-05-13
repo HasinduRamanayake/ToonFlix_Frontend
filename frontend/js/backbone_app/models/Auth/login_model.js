@@ -2,7 +2,7 @@ var AuthModel = Backbone.Model.extend({
     defaults: {
         username: '',
         password: '',
-        email: ''  // Email is optional for login
+        email: '' 
     }
 });
 

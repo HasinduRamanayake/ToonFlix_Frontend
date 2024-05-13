@@ -39,14 +39,14 @@ var DashboardView = Backbone.View.extend({
     // Render the template content
     render: function() {
         if (this.homeTemplate && this.postsTemplate && !this.collection.isEmpty()) {
-            this.$el.html(this.homeTemplate()); // First render the home template
-            this.$el.append(this.postsTemplate({ posts: this.collection.toJSON() })); // Then append the posts rendered from the post template
+            this.$el.html(this.homeTemplate()); 
+            console.log("Posts: ", this.collection.toJSON())
+            this.$el.append(this.postsTemplate({ posts: this.collection.toJSON() })); 
 
             this.initializeSwiper();
         } else {
             console.error('Templates not loaded or collection is empty.');
-        }
-              
+        }              
         
     },
 

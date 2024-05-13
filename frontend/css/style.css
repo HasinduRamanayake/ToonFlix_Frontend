@@ -83,7 +83,7 @@ header{
 
 }
 
-.navbar a:hover::after, .navbar .home-active::after{
+.navbar a:hover::after, .navbar a.home-active::after{
 
     width: 100%;
 }
@@ -156,46 +156,69 @@ header{
     color: #ffffff;
 }
 
-/* Post Container */
 
+
+/* Post Container */
 .posts-container {
-    max-width: 1200px;
+    max-width: 3000px;
     margin: auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust 'auto' to '1fr' for flexible sizing */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
     gap: 1rem;
     margin-top: 2rem;
 }
 
+.box {
+    flex: 0 1 350px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    background-color: #060821; 
+    border-radius: 15px;
+}
+
 .box .box-image {
     width: 100%;
-    height: 500px; /* Ensure this height works well with your images */
+    height: 450px; 
+    position: relative;
 }
 
 .box .box-image img {
+    object-position: top;
+    border-radius: 15px;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.box h3 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #d6c9c9;
-    margin-top: 0.5rem; /* Added margin for spacing */
+/* Style for the like count overlay */
+.like-overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255); 
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    height: 40px;
 }
 
-.box span {
-    font-size: 0.75rem; /* Adjusted for better typography */
-    color: #d3f3fc;
-    display: block; /* Make genre display as block to ensure line break */
+/* Hover effect for the overlay */
+.box .box-image:hover .like-overlay {
+    opacity: 1; 
 }
 
 .box .box-image img:hover {
-    transform: translateY(-15px);
-    transition: transform 0.3s linear; /* Use 'transform' to specify the transition property */
+    transform: translateY(-10px);
+    transition: transform 0.3s linear;
 }
-
 
 
 

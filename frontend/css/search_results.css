@@ -10,20 +10,20 @@
 
 .input-group {
   display: flex;
-  width: 80%; /* 80% of the screen width */
-  margin: 0 auto; /* Centers the input group horizontally */
+  width: 80%; 
+  margin: 0 auto; 
 }
 
 #search-bar input[type="text"] {
-  flex-grow: 1; /* Allows input field to take available space */
+  flex-grow: 1; 
   padding: 12px 20px;
   font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 25px 0 0 25px; /* Rounded corners on the left side */
+  border-radius: 25px 0 0 25px; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   outline: none;
   transition: all 0.2s;
-  margin-right: -1px; /* Overlap border with button to look attached */
+  margin-right: -1px; 
 }
 
 #search-button {
@@ -32,7 +32,7 @@
   border: none;
   background-color: #007bff;
   color: white;
-  border-radius: 0 25px 25px 0; /* Rounded corners on the right side */
+  border-radius: 0 25px 25px 0; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.2s;
@@ -44,30 +44,30 @@
 }
 
 fieldset {
-  display: flex; /* Enables flexbox layout for children, which are the labels */
-  justify-content: center; /* Centers the labels horizontally in the fieldset */
-  align-items: center; /* Aligns the labels vertically */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   border: none;
   padding: 0;
   margin: 1rem auto;
-  width: 80%; /* Match the width of the input group */
+  width: 80%; 
 }
 
 #search-bar label {
   font-size: 14px;
   color: #ffffff;
-  margin: 0 10px; /* Adjust the horizontal margin to decrease gap */
-  flex: 1; /* Each label will take equal space */
-  text-align: center; /* Center text inside each label */
+  margin: 0 10px; 
+  flex: 1;
+  text-align: center; 
 }
 
 #search-bar input[type="radio"] {
-  margin-right: 0.5rem; /* Small right margin for the radio buttons */
+  margin-right: 0.5rem;
 }
 
 /* Container for the cards */
 .post {
-  background-color: #454850;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin: 5px;
@@ -80,12 +80,13 @@ fieldset {
 
 .post-header {
   padding: 15px;
-  border-bottom: 1px solid #283f6d;
+  border-bottom: 1px solid #2a97df;
 }
 
 .post-header h2 {
   font-size: 18px;
   margin: 0;
+  color: #000000;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -93,17 +94,17 @@ fieldset {
 /* Image container */
 .post-image-container {
   width: 100%;
-  height: 120px; /* Fixed height for image container */
+  height: 120px; 
   overflow: hidden;
-  display: flex; /* Ensures that the child image can be centered */
-  align-items: center; /* Vertically centers the image if it's not tall enough */
-  justify-content: center; /* Horizontally centers the image if it's not wide enough */
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
 }
 
 .post-header img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the area, cropping as needed */
+  object-fit: cover; 
 }
 
 .post-body {
@@ -113,12 +114,12 @@ fieldset {
 
 .post-body div {
   margin-bottom: 5px;
-  color: #333;
+  color: #000000;
 }
 
 .post-footer {
   padding: 15px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #1ab5df;
   color: #ffffff;
   font-size: 14px;
   text-align: right;
@@ -128,31 +129,31 @@ fieldset {
 
 .post-body .tag {
   display: inline-block;
-  background-color: #007bff; /* Tag background color */
-  color: #fff; /* Text color */
-  padding: 5px 10px; /* Spacing inside tags */
-  margin: 2px; /* Spacing between tags */
-  border-radius: 3px; /* Rounded corners for tags */
-  font-size: 12px; /* Smaller font size for tag text */
-  white-space: nowrap; /* Prevents tags from breaking into multiple lines */
+  background-color: #4691e0; 
+  color: #fff;
+  padding: 5px 10px; 
+  margin: 2px; 
+  border-radius: 3px; 
+  font-size: 12px;
+  white-space: nowrap; 
 }
 
 /* Responsive considerations */
 @media (max-width: 600px) {
   .post {
-    width: auto; /* Takes the full width of the screen minus the margin */
-    height: auto; /* Height adjusts to content */
+    width: auto; 
+    height: auto;
     margin: 20px;
   }
   .post-image-container {
-    height: auto; /* Image container adjusts to the image height */
+    height: auto; 
   }
 }
 #posts-container {
   display: flex;
-  flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
-  justify-content: space-around; /* Evenly spaces the cards with space around them */
-  align-items: flex-start; /* Aligns items to the top */
-  gap: 10px; /* Optional: Adds a gap between cards */
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  align-items: flex-start; 
+  gap: 10px; 
 }
   
