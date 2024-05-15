@@ -1,20 +1,20 @@
 var DashboardView = Backbone.View.extend({
         
-    // Initialization function
+    // Initialization of the view
     initialize: function() {
         this.collection = new PostsCollection();
         this.loadTemplate();
     },
     loadTemplate: function() {
         var self = this;
-        // Fetch the template HTML from an external file
+        // Fetching the template HTML 
         $.get('html/dashboard.html', function(data) {
-            var wrapper = $("<div>").html(data); // Wrap the data in a div for easier manipulation
+            var wrapper = $("<div>").html(data);
             self.homeTemplate = _.template(wrapper.find('#home-template').html());
             self.postsTemplate = _.template(wrapper.find('#post-template').html());
             if (self.homeTemplate && self.postsTemplate) {
-                 // Render the view once both templates are loaded
-                self.listenTo(self.collection, 'sync', self.render);  // Listen for the sync event
+                
+                self.listenTo(self.collection, 'sync', self.render);  // Listening for the collection sync event
                 self.collection.fetch({
                     reset: true,
                     error: function() {
@@ -36,11 +36,10 @@ var DashboardView = Backbone.View.extend({
         });
     },
 
-    // Render the template content
+    // Rendering the template content
     render: function() {
         if (this.homeTemplate && this.postsTemplate && !this.collection.isEmpty()) {
             this.$el.html(this.homeTemplate()); 
-            console.log("Posts: ", this.collection.toJSON())
             this.$el.append(this.postsTemplate({ posts: this.collection.toJSON() })); 
 
             this.initializeSwiper();

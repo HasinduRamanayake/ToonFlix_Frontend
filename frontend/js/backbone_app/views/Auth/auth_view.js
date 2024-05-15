@@ -20,7 +20,7 @@ var AuthView = Backbone.View.extend({
 
     render: function() {
         this.$el.html(this.template);
-        this.toggleForms();  // Initially setup forms display
+        this.toggleForms(); //initial form toggling
         return this;
     },
 
@@ -32,12 +32,11 @@ var AuthView = Backbone.View.extend({
         });
         loginModel.save(null, {
             success: function(model, response) {
-                console.log('Login Successful', response);
                 localStorage.setItem('user', JSON.stringify(model.toJSON()));
                 Backbone.history.navigate('dashboard', { trigger: true });
             },
-            error: function(model, error) {
-                console.log('Login Failed', error);                
+            error: function() {
+            
                 Swal.fire({
                     icon: 'error',
                     title: 'Unauthorized',
@@ -56,7 +55,7 @@ var AuthView = Backbone.View.extend({
             password: this.$('#new-password').val(),
             email: this.$('#email').val()
         });
-        var self = this; // Save the current context
+        var self = this; 
         signUpModel.save(null, {
             success: function(model, response) {
             
@@ -68,7 +67,7 @@ var AuthView = Backbone.View.extend({
                 self.toggleForms(); 
             },
             error: function(model, error) {
-                console.log('Sign Up Failed', error);
+            
                 Swal.fire({
                     icon: 'error',
                     title: 'Registration Unsuccessful',
@@ -83,6 +82,6 @@ var AuthView = Backbone.View.extend({
         var loginVisible = this.$('#login-form').is(':visible');
         this.$('#login-form').toggle(!loginVisible);
         this.$('#signup-form').toggle(loginVisible);
-        this.$('#toggle-form').text(loginVisible ? "Already have an account? Log In" : "Don't have an account? Sign Up");
+        this.$('#toggle-form').text(loginVisible ? "Have an account? Log In" : "Don't have an account? Sign Up");
     }
 });

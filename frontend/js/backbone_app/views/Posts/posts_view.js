@@ -6,15 +6,15 @@ var PostsCollectionView = Backbone.View.extend({
 
     loadTemplate: function() {
         var self = this;
-        // Fetch the template HTML from an external file
+        // Fetching the template HTML
         $.get('html/dashboard.html')
             .done(function(data) {
-                // Ensure the template element is correctly found within the fetched data
+            
                 var templateHtml = $("<div>").html(data).find('#home-template').html();
                 if (templateHtml) {
                     self.template = _.template(templateHtml);
-                    self.listenTo(self.collection, 'sync', self.render);  // Listen for the sync event
-                    self.collection.fetch({reset: true});  // Fetch the collection data
+                    self.listenTo(self.collection, 'sync', self.render);
+                    self.collection.fetch({reset: true}); 
                 } else {
                     console.error('Template content not found.');
                 }
@@ -25,12 +25,11 @@ var PostsCollectionView = Backbone.View.extend({
     },
 
     render: function() {
-        // Ensure the template is loaded and the collection is fetched before rendering
         if (!this.template || this.collection.isEmpty()) {
-            return this;  // Exit if the template isn't loaded or the collection is empty
+            return this;  
         }
 
-        // Render the posts
+        // appending all the postsdata into an array to pass to the HTML template
         var postsData = this.collection.map(function(model) {
             return model.toJSON();
         });

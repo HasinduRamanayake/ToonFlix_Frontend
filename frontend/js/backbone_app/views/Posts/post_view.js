@@ -10,7 +10,7 @@ var PostDetailView = Backbone.View.extend({
         'click .follow-user': 'followUser'
     },
     initialize: function(options) {
-        // options.id will contain the ID of the post to fetch
+        
         
         this.model = new PostModel({id: options.id});        
         this.collection = new CommentsCollection({id: options.id});
@@ -19,7 +19,6 @@ var PostDetailView = Backbone.View.extend({
         this.listenTo(this.collection, 'update', this.commentRender);
         this.listenTo(this.collection, 'add', this.commentRender);
         this.listenTo(this.model, 'update', this.postRender);
-        console.log('UserID',this.currentUserId);
         this.loadTemplate(); 
     },
 
@@ -41,10 +40,6 @@ var PostDetailView = Backbone.View.extend({
                     var postUsername = responseData.username;
                     
     
-                    console.log('likes', responseData);
-                    console.log('likes', likes);
-                    console.log('USERPOSTName', postUsername);
-    
                     // Checking if any of the likes belong to the current user
                     var likedByCurrentUser = likes.some(function(like) {
                         return like.user_id == self.currentUserId && responseData.id == self.model.id;
@@ -54,9 +49,7 @@ var PostDetailView = Backbone.View.extend({
                     var followedByCurrentUser = followers.some(function(follower) {
                         return follower.id == self.currentUserId;
                     });
-    
-                    console.log('likedByCurrentUser', likedByCurrentUser);
-                    console.log('followedByCurrentUser', followedByCurrentUser);
+
     
                     self.model.set('likedByCurrentUser', likedByCurrentUser);
                     self.model.set('followedByCurrentUser', followedByCurrentUser);
@@ -69,14 +62,13 @@ var PostDetailView = Backbone.View.extend({
                     self.collection.fetch({
                         reset: true,
                         success: function(collection) {
-                            console.log("Comments fetch success", collection);
-                            // Render comments and form 
+                
+                            // Rendering comments and form 
                             self.commentRender();
                             self.commentFormRender();
                         },
                         error: function(collection, response) {
                             console.error("Comments fetch failed", response);
-                            // Even if comments fetch fails, you might still want to render the form
                             self.commentFormRender();
                         }
                     });
@@ -164,7 +156,6 @@ var PostDetailView = Backbone.View.extend({
 
         comment.save(null, {
             success: (model, response) => {
-                console.log('Comment added successfully:', response);
                 this.collection.add(model); 
                 this.commentRender();
             },
@@ -190,8 +181,7 @@ var PostDetailView = Backbone.View.extend({
         $.ajax({
             url: 'http://localhost/toonflix/api/likes/' + endpoint + '/' + postId,
             type: methodType,
-            success: function(response) {
-                console.log('Post ' + (isLiked ? 'unliked' : 'liked') + ' successfully:', response);
+            success: function() {
                 
                 // Updatign the model with the new like status
                 self.model.set('likedByCurrentUser', !isLiked);
@@ -217,7 +207,7 @@ var PostDetailView = Backbone.View.extend({
         var postUserId = this.model.get('postUserId');
         
         var isFollowed = this.model.get('followedByCurrentUser');
-        
+        //toggling the follow/unfollow url
         var endpoint = isFollowed ? 'unfollow' : 'follow';
         var methodType = 'POST';
         
@@ -225,8 +215,6 @@ var PostDetailView = Backbone.View.extend({
             url: 'http://localhost/toonflix/api/user/' + endpoint + '/' + this.currentUserId + '/' + postUserId,
             type: methodType,
             success: function(response) {
-                console.log('User ' + (isFollowed ? 'unfollowed' : 'followed') + ' successfully:', response);
-                
                 self.model.set('followedByCurrentUser', !isFollowed);
                 
                 var followButton = self.$('.follow-user');
@@ -298,11 +286,19 @@ var PostDetailView = Backbone.View.extend({
             comment.set('destroyed', true); // Setting the destroyed flag
             comment.destroy({
                 success: (model, response) => {
-                    console.log('Comment deleted successfully:', response);
-                    this.commentRender();  // Rerender the comment list
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Comment deleted successfully!'
+                                        
+                    }); 
+                    this.commentRender();  // Rerendering the comment list
                 },
                 error: (model, response) => {
-                    console.error('Failed to delete comment:', response);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to Delete Comment'
+                                        
+                    }); 
                 }
             });
         }

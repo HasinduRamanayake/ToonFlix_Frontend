@@ -24,10 +24,6 @@ var PostFormView = Backbone.View.extend({
     },
 
     validateImage: function(file) {
-        var validTypes = ['image/jpeg', 'image/png', 'image/gif'];
-        if (validTypes.indexOf(file.type) === -1) {
-            return false;
-        }
         
         if (file.size > 5242880) { 
             Swal.fire({
@@ -44,9 +40,8 @@ var PostFormView = Backbone.View.extend({
         e.preventDefault();
 
         var formData = new FormData(e.target); 
-
+        //considering only the first image from the selection
         var imageInput = this.$('#image')[0];
-        console.log(imageInput);
         if (imageInput.files.length > 0) {
             var file = imageInput.files[0];
             if (this.validateImage(file)) {
@@ -58,14 +53,13 @@ var PostFormView = Backbone.View.extend({
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: (model, response) => {
-                        console.log('Successfully uploaded post:', response);
+                    success: (response) => {
                         Swal.fire({
                             icon: 'success',
                             title: 'Post Created Succesfully'
                                             
                         }); 
-                        this.model.set(this.model.defaults); // Reset model after successful submission
+                        this.model.set(this.model.defaults); // Reset model and rerender after success of the request
                         this.render(); 
                     },
                     error: (model, response) => {
@@ -79,7 +73,7 @@ var PostFormView = Backbone.View.extend({
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Invalid image. Please select an image file (e.g., jpg, png, gif).'                                     
+                    title: 'Invalid image. Please select an image file (e.g., jpg, png, jpeg).'                                     
                 });
             }
         } else {
