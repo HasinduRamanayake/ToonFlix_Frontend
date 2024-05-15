@@ -17,13 +17,13 @@ var AppRouter = Backbone.Router.extend({
         this.listenTo(this, 'route', this.handleRouteChange);
     },
     handleRouteChange: function(routeName) {        
-        var routesWithoutCreatePostButton = ['createPost', 'login', 'showDetailedPost'];
+        var routesWithoutAccessButtons = ['createPost', 'login', 'showDetailedPost'];
         var routesWithoutNavBar = ['login']
-        this.toggleNavBarLinks(!routesWithoutCreatePostButton.includes(routeName), !routesWithoutNavBar.includes(routeName));
+        this.toggleNavBarLinks(!routesWithoutAccessButtons.includes(routeName), !routesWithoutNavBar.includes(routeName));
     },
 
-    toggleNavBarLinks: function(showCreatePostButton, showNavbarLinks) {
-        $('.btn').css('display', showCreatePostButton ? 'inline-block' : 'none');
+    toggleNavBarLinks: function(showAccessButton, showNavbarLinks) {
+        $('#access_buttons').css('display', showAccessButton ? 'inline-block' : 'none');
         $('#links').css('display', showNavbarLinks ? 'flex' : 'none');
     },
 

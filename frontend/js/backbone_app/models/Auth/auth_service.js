@@ -1,23 +1,36 @@
 var AuthService = {
     signOut: function() {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to sign out?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, sign out!',
+            cancelButtonText: 'No, stay here'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('HEY');
+                localStorage.removeItem('user');  
         
-        console.log('HEY');
-        localStorage.removeItem('user');  
-        $.ajax({
-            url: 'http://localhost/toonflix/api/auth/signout',
-            type: 'POST',
-            success: function() {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'Signed Out',
-                    text: 'You have successfully signed out.',
-                });
-                Backbone.history.navigate('', { trigger: true });
-            },
-            error: function(xhr, status, error) {
-                console.error('Failed to SignOut', error);
+                $.ajax({
+                    url: 'http://localhost/toonflix/api/auth/signout',
+                    type: 'POST',
+                    success: function() {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Signed Out',
+                            text: 'You have successfully signed out.',
+                        });
+                        Backbone.history.navigate('', { trigger: true });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Failed to SignOut', error);
+                    }
+                });       
             }
-        });       
+        });      
        
     },
     validateSession: function() {
@@ -36,7 +49,6 @@ var AuthService = {
                             text: `Session is Invalid. Please Login Again!`
                         });
                     } else {
-                        Backbone.history.navigate('dashboard', { trigger: true });
                         resolve();
                     }
                 },
@@ -53,6 +65,7 @@ var AuthService = {
             });
         });
     },
+    
     
     
     

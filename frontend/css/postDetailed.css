@@ -1,11 +1,11 @@
 :root {
-    --main-color: #007bff;  /* Blue */
-    --secondary-color: #f6dada; /* Light red */
+    --main-color: #007bff;
+    --secondary-color: #f6dada; 
     --text-color: #ffffff;
-    --highlight-color: #ff0000; /* Red */
+    --highlight-color: #ff0000;
     --background-color: #f4f4f4;
-    --comment-background: #19224f; /* Dark blue */
-    --delete-color: #c00; /* Dark red */
+    --comment-background: #043f82;
+    --delete-color: #c00; 
     --icon-color: #bbb;
 }
 
@@ -14,24 +14,62 @@
     margin: 0;
     padding: 0;
 }
-
 .card-container {
     max-width: 80%;
     margin: 100px auto 20px;
-    background-color: #314372;
+    background-color: #0b4184;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-.card-image img {
+.card-image {
+    position: relative;
+}
+
+.image-preview {
     width: 100%;
     height: 300px;
     object-fit: cover;
     display: block;
     border-radius: 5px;
-    object-position: top; 
-    margin-right: 1rem; 
+    object-position: top;
+    margin-right: 1rem;
+    cursor: pointer;
+}
+
+.popup-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.popup-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 5px;
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+}
+
+.card-image:hover .popup-container {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.card-image:hover .popup-image {
+    transform: scale(1);
 }
 
 .card-header h2 {
@@ -59,16 +97,22 @@
     line-height: 1.6;
 }
 
+.card-publisher {
+    padding: 8px 16px 8px 16px;
+    color: #c9eaef;
+    line-height: 0.5;
+}
+
 .card-tags {
     padding: 16px;
-    background-color: var(--background-color);
+    background-color:var(--background-color);
     border-top: 1px solid #ddd;
 }
 
 .tag {
     display: inline-block;
-    background-color: #e9e9e9;
-    color: #555;
+    background-color: #d3ebf8;
+    color: #002d64;
     padding: 5px 10px;
     margin-right: 5px;
     font-size: 0.75em;
@@ -221,6 +265,9 @@
     width: 100%;
     margin-bottom: 10px;
     padding: 5px;
+}
+.follow-user.followed i {
+    color: rgb(0, 191, 255);
 }
 
 .comment-submit, .edit-comment, .save-comment, .cancel-comment, .delete-comment {

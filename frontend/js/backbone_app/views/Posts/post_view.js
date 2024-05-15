@@ -7,6 +7,7 @@ var PostDetailView = Backbone.View.extend({
         'click .save-comment-button': 'saveComment',
         'click .cancel-comment-button': 'toggleEdit',
         'click .like-post': 'likePost',
+        'click .follow-user': 'followUser'
     },
     initialize: function(options) {
         // options.id will contain the ID of the post to fetch
@@ -33,20 +34,36 @@ var PostDetailView = Backbone.View.extend({
             if (self.postTemplate && self.commentTemplate && self.commentFormTemplate) {
                 self.model.fetch().done(function(response) {
                     var responseData = self.model.get('data') || {};
-
+    
                     var likes = responseData.likes || [];
-
-                    console.log('likes',responseData);
-                   
-                    console.log('likes',likes);
+                    var followers = responseData.followers || [];
+                    var postUserId = responseData.user_id;
+                    var postUsername = responseData.username;
+                    
+    
+                    console.log('likes', responseData);
+                    console.log('likes', likes);
+                    console.log('USERPOSTName', postUsername);
+    
                     // Checking if any of the likes belong to the current user
                     var likedByCurrentUser = likes.some(function(like) {
                         return like.user_id == self.currentUserId && responseData.id == self.model.id;
                     });
-                    console.log(likedByCurrentUser)
+    
+                    // Checking if the current user is following the post's user
+                    var followedByCurrentUser = followers.some(function(follower) {
+                        return follower.id == self.currentUserId;
+                    });
+    
+                    console.log('likedByCurrentUser', likedByCurrentUser);
+                    console.log('followedByCurrentUser', followedByCurrentUser);
+    
                     self.model.set('likedByCurrentUser', likedByCurrentUser);
-
-                    self.postRender(likedByCurrentUser);
+                    self.model.set('followedByCurrentUser', followedByCurrentUser);
+                    self.model.set('postUserId', postUserId);
+                    self.model.set('username',postUsername);
+    
+                    self.postRender();
     
                     // Fetch comments
                     self.collection.fetch({
@@ -73,21 +90,31 @@ var PostDetailView = Backbone.View.extend({
             console.error('Failed to load the post template.');
         });
     },
+    
 
-    postRender: function(isLiked) {
+    postRender: function() {
         var modelData = this.model.toJSON();
         var data = modelData.data;
         var isLiked = this.model.get('likedByCurrentUser');
+        var isFollowed = this.model.get('followedByCurrentUser');
+        var postUserId = this.model.get('postUserId');
         
         if (this.postTemplate) {
-            this.$el.html(this.postTemplate(_.extend(data, { likedByCurrentUser: isLiked })));
-            
+            this.$el.html(this.postTemplate(_.extend(data, {
+                likedByCurrentUser: isLiked,
+                followedByCurrentUser: isFollowed,
+                currentUserId: this.currentUserId,
+                postUserId: postUserId
+            })));
             
             var likeButton = this.$('.like-post');
-            likeButton.toggleClass('liked', !isLiked);
+            likeButton.toggleClass('liked', isLiked);
             likeButton.find('i').toggleClass('fas fa-heart far fa-heart');
-
             
+            // Update the follow button icon color
+            var followButton = this.$('.follow-user');
+            followButton.toggleClass('followed', isFollowed);
+    
             this.delegateEvents();
         } else {
             console.error('Template has not been loaded.');
@@ -174,11 +201,46 @@ var PostDetailView = Backbone.View.extend({
                 likeButton.toggleClass('liked', !isLiked);
                 likeButton.find('i').toggleClass('fas fa-heart far fa-heart');  
 
-                // Trigger a model change event 
+                // Triggering a model change event 
                 self.model.trigger('change:likedByCurrentUser');
+
             },
             error: function(xhr, status, error) {
                 console.error('Failed to ' + (isLiked ? 'unlike' : 'like') + ' post:', error);
+            }
+        });
+    },
+
+    followUser: function(e) {
+        e.preventDefault();
+        var self = this;
+        var postUserId = this.model.get('postUserId');
+        
+        var isFollowed = this.model.get('followedByCurrentUser');
+        
+        var endpoint = isFollowed ? 'unfollow' : 'follow';
+        var methodType = 'POST';
+        
+        $.ajax({
+            url: 'http://localhost/toonflix/api/user/' + endpoint + '/' + this.currentUserId + '/' + postUserId,
+            type: methodType,
+            success: function(response) {
+                console.log('User ' + (isFollowed ? 'unfollowed' : 'followed') + ' successfully:', response);
+                
+                self.model.set('followedByCurrentUser', !isFollowed);
+                
+                var followButton = self.$('.follow-user');
+                followButton.toggleClass('followed', !isFollowed);
+
+                self.model.trigger('change:followedByCurrentUser');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'You '+ (isFollowed ? 'Unfollowed ' : 'Followed ') +  self.model.get('username') + ' successfully!' 
+                                    
+                }); 
+            },
+            error: function(xhr, status, error) {
+                console.error('Failed to ' + (isFollowed ? 'unfollow' : 'follow') + ' user:', error);
             }
         });
     },

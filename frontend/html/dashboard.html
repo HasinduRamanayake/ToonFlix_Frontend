@@ -3,36 +3,16 @@
         <div class="swiper-wrapper">
             <div class="swiper-slide container">
                 <img src="/ToonFlix_Frontend/assets/images/ToonFlix_Welcome.webp" alt="">
-                <div class="home-text">
-                   
-
-                </div>
             </div>
             <div class="swiper-slide container">
                 <img src="/ToonFlix_Frontend/assets/images/ToonFlix_Collab.webp" alt="">
-                <!-- <div class="home-text">
-                    <span>Avatar</span>
-                    <h1> The Legend of Korra </h1>
-                    <a href="#" class="btn">Add</a>
-
-                </div> -->
             </div>
             <div class="swiper-slide container">
-                <img src="/ToonFlix_Frontend/assets/images/home3.png" alt="">
+                <img src="/ToonFlix_Frontend/assets/images/ToonFlix_Reel.webp" alt="">
                 <div class="home-text">
-                    <span>Netflix</span>
-                    <h1> Castlevania </h1>
-                    <a href="#" class="btn">Add</a>
-
-                </div>
-            </div>
-            <div class="swiper-slide container">
-                <img src="/ToonFlix_Frontend/assets/images/home4.jpeg" alt="">
-                <div class="home-text">
-                    <span>Marvels</span>
-                    <h1> Spider Man <br> Across the Spiderverse </h1>
-                    <a href="#" class="btn">Add</a>
-
+                    <span>ANIME</span>
+                    <h1> SHARE YOUR CREATIONS!</h1>
+                    <a href="#dashboard" class="btn">Add</a>
                 </div>
             </div>
         </div>
@@ -40,8 +20,6 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </section>
-    
-
 </script>
 
 <script type="text/template" id="post-template">
@@ -61,7 +39,7 @@
                 </div>
                 <h3><%= post.title %></h3>
                 <span>Genre: <%= post.genre %></span>
-                <span><b>Created By <%= post.username %></b></span>
+                <span><b>Posted By <%= post.username %></b></span>
             </div>
         <% }); %>
     </div>

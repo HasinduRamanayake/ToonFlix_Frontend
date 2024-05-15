@@ -62,10 +62,15 @@ var BlogPostView = Backbone.View.extend({
             data: data,
             success: function(response) {
                 console.log('Posts fetched successfully:', response);
-                this.renderPosts(response.data);
+                if (response.data && response.data.length > 0) {
+                    this.renderPosts(response.data);
+                }
             }.bind(this),
-            error: function(error) {
-                console.error('Failed to fetch posts:', error);
+            error: function() {
+                Swal.fire({
+                    icon: 'warning',
+                    title:"No Posts were Found!"                               
+                });
             }
         });
     },
