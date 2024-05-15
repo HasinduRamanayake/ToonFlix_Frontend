@@ -1,7 +1,6 @@
-/* Base styles for body, ensuring full height and centering content */
 body {
     font-family: Arial, sans-serif;
-    background-image: url('../../assets/Login/cbg2.webp'); /* Replace with your actual background image URL */
+    background-image: url('../../assets/Login/cbg2.webp'); 
     background-size: cover;
     background-position: center;
     display: flex;
@@ -9,57 +8,64 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    color: #333; /* Text color */
+    color: #333; 
 }
 
-/* Common form styles */
 form {
-    background-color: rgba(255, 255, 255, 0); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0); 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
-    width: 300px;
-    margin-bottom: 20px; /* Spacing between form and toggle link */
+    width: 260px;
+    margin-bottom: 20px; 
 }
 
-/* Label styling */
 form label {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: block;
+    font-size: 14px;
 }
 
-/* Input field styling */
 form input[type="text"],
 form input[type="password"],
 form input[type="email"] {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0 20px 0;
+    padding: 8px;
+    margin: 8px 0 16px 0;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-size: 14px;
     box-sizing: border-box;
 }
 
-/* Button styling */
+form input[type="text"]::placeholder,
+form input[type="password"]::placeholder,
+form input[type="email"]::placeholder {
+    color: #ccc;
+}
+
 form button {
+    display: block;
     width: 80%;
-    background-color: #4CAF50;
+    background-color: #29a1d9;
     color: white;
-    padding: 14px 20px;
+    padding: 10px;
     margin: 0 auto;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    
+    font-size: 14px;
 }
 
 form button:hover {
-    background-color: #45a049;
+    background-color: #008fba;
 }
 
-/* Toggle link styling */
 a#toggle-form {
     display: block;
     text-align: center;
@@ -71,7 +77,6 @@ a#toggle-form:hover {
     text-decoration: underline;
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 600px) {
     form {
         width: 90%;

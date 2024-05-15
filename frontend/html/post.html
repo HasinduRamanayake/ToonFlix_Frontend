@@ -4,11 +4,15 @@
             <h2><%= title %></h2>
         </div>
         <div class="card-image">
-            <img src="<%= image_path %>" alt="<%= title %>" />
+            <img src="<%= image_path %>" alt="<%= title %>" class="image-preview" />
+            <div class="popup-container">
+                <img src="<%= image_path %>" alt="<%= title %>" class="popup-image" />
+            </div>
         </div>
         <div class="card-content">
             <p class="card-genre">Genre: <%= genre %></p>
             <p class="card-description">Description: <%= description %></p>
+            <p class="card-publisher">Published By <%= username %></p>
             <div class="card-tags">
                 <% _.each(tag, function(singleTag) { %>
                     <span class="tag">#<%= singleTag %></span>
@@ -17,8 +21,11 @@
             <button class="like-post btn-icon <%= likedByCurrentUser ? 'liked' : '' %>" aria-label="<%= likedByCurrentUser ? 'Unlike this post' : 'Like this post' %>">
                 <i class="<%= likedByCurrentUser ? 'far fa-heart' : 'fas fa-heart' %>"></i>
             </button>
-                      
-            
+            <% if (postUserId !== currentUserId) { %>
+                <button class="follow-user btn-icon <%= followedByCurrentUser ? 'followed' : '' %>" aria-label="<%= followedByCurrentUser ? 'Unfollow this user' : 'Follow this user' %>">
+                    <i class="fas fa-user-plus"></i>
+                </button>
+            <% } %>
         </div>
         <div class="comments-container"></div>
     </div>
@@ -50,10 +57,6 @@
         </ul>
     </div>
 </script>
-
-
-
-
 
 <script type="text/template" id="comment-form-detail-template"> 
     <form class="comment-form">

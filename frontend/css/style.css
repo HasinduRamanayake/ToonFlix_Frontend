@@ -38,7 +38,7 @@ header{
     align-items: center;
     justify-content: space-between;
     padding: 20px 100px;
-    transition: 0.5s;
+    transition: 5s;
     /* background: var(--main-color); */
 }
 
@@ -107,7 +107,19 @@ header{
     background: rgb(239, 26, 26);
 
 }
+.btn-signOut {
+    margin: 10px;
+    padding: 10px 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+.btn-signOut:hover {
+    background-color: #0056b3;
+}
 
 .container{
     width: 100%;
@@ -132,17 +144,18 @@ header{
     z-index: 1000;
     padding: 250px 150px;
 }
+
 .home-text span{
     color: var(--text-color);
     font-weight: 500;
     text-transform: uppercase;
 }
+
 .home-text h1{
     color: var(--text-color);
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1rem;
-
 }
 
 .heading{
@@ -155,8 +168,6 @@ header{
     border-bottom: 1px solid var(--main-color);
     color: #ffffff;
 }
-
-
 
 /* Post Container */
 .posts-container {

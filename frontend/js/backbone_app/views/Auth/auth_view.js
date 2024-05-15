@@ -77,9 +77,7 @@ var AuthView = Backbone.View.extend({
             }
         });
     },
-    signOut: function(e){
-        
-    },
+    
 
     toggleForms: function() {
         var loginVisible = this.$('#login-form').is(':visible');

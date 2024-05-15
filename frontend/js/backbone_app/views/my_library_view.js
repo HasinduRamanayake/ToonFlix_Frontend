@@ -109,7 +109,7 @@ var MyLibraryView = Backbone.View.extend({
             console.log("Marking model as destroyed:", postId);
             postModel.destroyed = true; // Explicitly mark the model as destroyed
             postModel.destroy({
-                wait: true, // Ensures the server response before removing the model from the collection
+                wait: true,
                 success: (model, response) => {
                     console.log('Post deleted successfully:', response);
                     this.renderPosts();  // Re-render the posts list
