@@ -1,6 +1,6 @@
 var BlogPostView = Backbone.View.extend({
     events: {
-        'click #search-button': 'fetchPosts', // Unified function for fetching posts
+        'click #search-button': 'fetchPosts',
         'change [name="searchMode"]': 'toggleSearchInput'
     },
 
@@ -61,7 +61,6 @@ var BlogPostView = Backbone.View.extend({
             type: 'GET',
             data: data,
             success: function(response) {
-                console.log('Posts fetched successfully:', response);
                 if (response.data && response.data.length > 0) {
                     this.renderPosts(response.data);
                 }

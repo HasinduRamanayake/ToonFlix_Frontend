@@ -11,7 +11,6 @@ var AuthService = {
             cancelButtonText: 'No, stay here'
         }).then((result) => {
             if (result.isConfirmed) {
-                console.log('HEY');
                 localStorage.removeItem('user');  
         
                 $.ajax({
@@ -35,7 +34,7 @@ var AuthService = {
     },
     validateSession: function() {
         return new Promise((resolve, reject) => {
-            console.log('Session Check');
+        // adopting asynchronous ways for non blocking behaviour to avoid corruptions on other processes when session checking is happening recently
             $.ajax({
                 url: 'http://localhost/toonflix/api/auth/session_validity', 
                 method: 'GET',
@@ -59,7 +58,6 @@ var AuthService = {
                         title: 'Error',
                         text: `Session Check Failed`
                     });
-                    console.log('DG', e.status);
                     reject('Session Check Failed');
                 }
             });

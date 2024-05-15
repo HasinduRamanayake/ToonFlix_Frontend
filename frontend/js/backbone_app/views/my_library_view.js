@@ -47,10 +47,10 @@ var MyLibraryView = Backbone.View.extend({
         var self = this; // Maintain the context for use in map function
         if (self.libraryItemTemplate) {
             var postsHtml = self.collection.map(function(postModel) {
-                return self.libraryItemTemplate(postModel.toJSON()); // Ensure toJSON() is called
+                return self.libraryItemTemplate(postModel.toJSON());
             }).join('');
 
-            self.$el.html(postsHtml); // Update the HTML of the current element with postsHtml
+            self.$el.html(postsHtml); 
         } else {
             console.error('Templates not loaded or collection is empty.');
         }
@@ -78,7 +78,7 @@ var MyLibraryView = Backbone.View.extend({
             tags: $postContainer.find('.post-tags-edit').val().split(',').map(tag => tag.trim())
         };
         
-        // Update the model with new attributes and save to server
+        // Updating the model with new attributes and save(backbone reques methods) to server
         postModel.save(attrs, {
             type: 'PUT',
             contentType: 'application/json',
@@ -86,14 +86,24 @@ var MyLibraryView = Backbone.View.extend({
                 title: attrs.title,
                 description: attrs.description,
                 genre: attrs.genre,
-                tags: JSON.stringify(attrs.tags) // Ensure tags are sent as a JSON string
+                tags: JSON.stringify(attrs.tags) 
             }),
             processData: false,
-            success: function(model, response) {
-                console.log('Post updated successfully:', response);
+            success: function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Post Updated!',
+                    text: e.response,
+                    footer: 'Post updated successfully!'
+                });
             },
             error: function(model, response) {
                 console.error('Failed to update post:', response);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to update post',
+                    text: 'Check you Connection!',
+                });
             }
         });
     },
@@ -106,13 +116,16 @@ var MyLibraryView = Backbone.View.extend({
         var postModel = this.collection.get(postId);
     
         if (postModel) {
-            console.log("Marking model as destroyed:", postId);
             postModel.destroyed = true; // Explicitly mark the model as destroyed
             postModel.destroy({
                 wait: true,
                 success: (model, response) => {
-                    console.log('Post deleted successfully:', response);
-                    this.renderPosts();  // Re-render the posts list
+                    this.renderPosts();  // Re-rendering the posts after deletion
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Post deleted successfully!',
+                        text: e.response,                        
+                    });
                 },
                 error: (model, response) => {
                     console.error('Failed to delete post:', response);

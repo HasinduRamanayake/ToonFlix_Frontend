@@ -33,9 +33,6 @@ var AppRouter = Backbone.Router.extend({
     },
    
     login: function() {
-        console.log("Login route is called.");
-      
-        
         new AuthView({el:'#app'}); 
         
     },

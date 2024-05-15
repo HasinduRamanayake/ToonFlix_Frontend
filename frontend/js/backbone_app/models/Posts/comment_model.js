@@ -1,6 +1,5 @@
 var CommentModel = Backbone.Model.extend({
     url: function() {
-        console.log("URL Check: isNew:", this.isNew(), "Destroyed:", this.get('destroyed'));
         if (this.isNew()) {
             return 'http://localhost/toonflix/api/comments/create_comment';
         } else if (this.get('destroyed')) {

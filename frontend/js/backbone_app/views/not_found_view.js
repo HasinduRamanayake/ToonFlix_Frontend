@@ -1,12 +1,12 @@
 var NotFoundView = Backbone.View.extend({
         
-    // Initialization function
+    
     initialize: function() {
         this.loadTemplate();
     },
     loadTemplate: function() {
         var self = this;
-        // Fetch the template HTML from an external file
+        // Fetching the template HTML
         $.get('html/not_found.html', function(data) {
             var templateHtml = $("<div>").html(data).find('#not-found-template').html();
             if (templateHtml) {
@@ -21,11 +21,10 @@ var NotFoundView = Backbone.View.extend({
         });
     },
 
-    // Render the template content
+    // Render the template
     render: function() {
         if (this.template) {
             this.$el.html(this.template());
-            // Initialize any sliders or interactive components here
            
         } else {
             console.error('Template not loaded yet.');

@@ -5,7 +5,6 @@ var PostsCollection = Backbone.Collection.extend({
     initialize: function(options) {
         options = options || {};
         if (options.userBasedPosts) {
-            console.log('check');
             this.url = 'http://localhost/toonflix/api/posts/get_user_posts'; 
         }
     },
